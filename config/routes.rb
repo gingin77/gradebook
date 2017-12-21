@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'grades/new'
+
   get 'students/index'
 
   get 'students/show'
