@@ -1,2 +1,22 @@
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<p>Showing courses and grades for <%= @student.name %></p>
+<table>
+  <thread>
+    <tr>
+      <th>Course</th>
+      <th>Grade %</th>
+      <th>Letter Grade</th>
+      <th>Points for GPA</th>
+    </tr>
+  </thread>
+  <tbody>
+    <% @student.grades.map do |g| %>
+    <tr>
+      <td><%= g.get_course_title %></td>
+      <td><%= g.percentage %></td>
+      <td><%= g.percnt_to_ltr %></td>
+      <td><%= g.ltr_to_grd_pts(g.percnt_to_ltr) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>Current GPA: <%= @grade.grds_to_gpa %></p>

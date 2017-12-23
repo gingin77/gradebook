@@ -1,2 +1,8 @@
-<h1>Students#index</h1>
-<p>Find me in app/views/students/index.html.erb</p>
+<h1>All of the students at Super Awesome University</h1>
+<% @students.map do |student| %>
+<ul>
+  <li>
+    <%= student.name %>
+  </li>
+</ul>
+<% end %>
