@@ -26,11 +26,11 @@ class GradeConverter
   }
 
   def self.percnt_to_ltr(percentage)
-    PRCT_TO_LTR.select {|k, v| break v if k.cover? self.percentage }
+    PRCT_TO_LTR.select {|k, v| break v if k.cover? percentage }
   end
 
   def self.ltr_to_grd_pts(letter)
-    LTR_TO_GRD_PTS.select { |k, _| k == letter}.values.join('')
+    LTR_TO_GRD_PTS.select {|k, _| k == letter}.values.join('')
   end
 
   def self.grds_to_gpa(student_id)

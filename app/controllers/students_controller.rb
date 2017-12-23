@@ -1,6 +1,4 @@
 class StudentsController < ApplicationController
-  # before_action :get_grade, only: :show
-
   def new
     @student = Student.new
   end
@@ -19,10 +17,4 @@ class StudentsController < ApplicationController
 
   def update
   end
-
-  private
-
-  # def get_grade
-  #   @grade = GradeConverter.find_by_student_id(params[:id])
-  # end
 end

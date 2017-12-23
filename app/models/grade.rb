@@ -15,9 +15,14 @@ class Grade < ApplicationRecord
     Student.find_by_id(self.student_id).name
   end
 
-  # def all_grds_for_std
-  #   Grade.where(student_id: self.student_id).map { |g| g.percentage }
-  # end
+  def percnt_to_ltr
+    GradeConverter.percnt_to_ltr(self.percentage)
+  end
+
+  def ltr_to_grd_pts
+    GradeConverter.ltr_to_grd_pts(self.percnt_to_ltr)
+  end
+
 
 
   # private
