@@ -1,22 +1,22 @@
 <p>Showing courses and grades for <%= @student.name %></p>
-<table>
-  <thread>
+<table class="table table-sm">
+  <thead class="thead-light">
     <tr>
-      <th>Course</th>
-      <th>Grade %</th>
-      <th>Letter Grade</th>
-      <th>Points for GPA</th>
+      <th scope="col">Course</th>
+      <th scope="col">Grade %</th>
+      <th scope="col">Letter Grade</th>
+      <th scope="col">Points for GPA</th>
     </tr>
-  </thread>
+  </thead>
   <tbody>
     <% @student.grades.map do |g| %>
     <tr>
-      <td><%= g.get_course_title %></td>
-      <td><%= g.percentage %></td>
-      <td><%= g.percnt_to_ltr %></td>
-      <td><%= g.ltr_to_grd_pts(g.percnt_to_ltr) %></td>
+      <td scope="row"><%= g.get_course_title %></td>
+      <td class="text-center"><%= g.percentage.round(1) %></td>
+      <td class="text-center"><%= g.percnt_to_ltr %></td>
+      <td class="text-center"><%= g.ltr_to_grd_pts(g.percnt_to_ltr) %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-<p>GPA for current term: <%= @grade&.grds_to_gpa %></p>
+<p>GPA for current term: <%= @grade&.grds_to_gpa.round(2) %></p>
