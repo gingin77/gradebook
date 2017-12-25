@@ -1,7 +1,239 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  percentage: 88.5
+  percentage: 90.7
+  student: one
+  course: organic_chemisty
 
 two:
-  percentage: 71.6
+  percentage: 43.4
+  student: one
+  course: computer_science
+
+three:
+  percentage: 88.4
+  student: one
+  course: calculus
+
+four:
+  percentage: 97.3
+  student: one
+  course: wizardry
+
+five:
+  percentage: 85.2
+  student: two
+  course: english
+
+six:
+  percentage: 77.8
+  student: two
+  course: calculus
+
+seven:
+  percentage: 95.3
+  student: two
+  course: art_history_two
+
+eight:
+  percentage: 76.3
+  student: two
+  course: wizardry
+
+nine:
+  percentage: 86.8
+  student: two
+  course: physics
+
+ten:
+  percentage: 77.8
+  student: three
+  course: wizardry
+
+eleven:
+  percentage: 95.3
+  student: three
+  course: quidditch
+
+twelve:
+  percentage: 61.0
+  student: three
+  course: art_history_two
+
+thirteen:
+  percentage:
+  student: two
+  course: organic_chemisty
+
+fourteen:
+  percentage: 200
+  student: two
+  course: computer_science
+
+fifteen:
+  percentage: 72
+  student: four
+  course: wizardry
+
+sixteen:
+  percentage: 92
+  student: four
+  course: english
+
+seventeen:
+  percentage: 61.0
+  student: four
+  course: art_history_two
+
+eighteen:
+  percentage: 85.3
+  student: four
+  course: computer_science
+
+fix_1:
+  percentage:
+  student: fix_1
+  course: organic_chemisty
+
+fix_2:
+  percentage:
+  student: fix_2
+  course: organic_chemisty
+
+fix_3:
+  percentage:
+  student: fix_3
+  course: organic_chemisty
+
+fix_4:
+  percentage:
+  student: fix_4
+  course: organic_chemisty
+
+fix_5:
+  percentage:
+  student: fix_5
+  course: organic_chemisty
+
+fix_6:
+  percentage:
+  student: fix_6
+  course: organic_chemisty
+
+fix_7:
+  percentage:
+  student: fix_7
+  course: organic_chemisty
+
+fix_8:
+  percentage:
+  student: fix_8
+  course: organic_chemisty
+
+fix_9:
+  percentage:
+  student: fix_9
+  course: organic_chemisty
+
+fix_10:
+  percentage:
+  student: fix_10
+  course: organic_chemisty
+
+fix_11:
+  percentage:
+  student: fix_11
+  course: organic_chemisty
+
+fix_12:
+  percentage:
+  student: fix_12
+  course: organic_chemisty
+
+fix_13:
+  percentage:
+  student: fix_13
+  course: organic_chemisty
+
+fix_14:
+  percentage:
+  student: fix_14
+  course: organic_chemisty
+
+fix_15:
+  percentage:
+  student: fix_15
+  course: organic_chemisty
+
+fix_16:
+  percentage:
+  student: fix_16
+  course: organic_chemisty
+
+fix_17:
+  percentage:
+  student: fix_17
+  course: organic_chemisty
+
+fix_18:
+  percentage:
+  student: fix_18
+  course: organic_chemisty
+
+fix_19:
+  percentage:
+  student: fix_19
+  course: organic_chemisty
+
+fix_20:
+  percentage:
+  student: fix_20
+  course: organic_chemisty
+
+fix_21:
+  percentage:
+  student: fix_21
+  course: organic_chemisty
+
+fix_22:
+  percentage:
+  student: fix_22
+  course: organic_chemisty
+
+fix_23:
+  percentage:
+  student: fix_23
+  course: organic_chemisty
+
+fix_24:
+  percentage:
+  student: fix_24
+  course: organic_chemisty
+
+fix_25:
+  percentage:
+  student: fix_25
+  course: organic_chemisty
+
+fix_26:
+  percentage:
+  student: fix_26
+  course: organic_chemisty
+
+fix_27:
+  percentage:
+  student: fix_27
+  course: organic_chemisty
+
+fix_28:
+  percentage:
+  student: fix_28
+  course: organic_chemisty
+
+fix_29:
+  percentage:
+  student: fix_29
+  course: organic_chemisty
+
+fix_30:
+  percentage:
+  student: fix_30
+  course: organic_chemisty

@@ -9,7 +9,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get course show" do
     # skip
-    course = courses(:one)
+    course = courses(:physics)
     get course_url(course)
     assert_response :success
   end

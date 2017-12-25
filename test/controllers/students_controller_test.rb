@@ -8,6 +8,7 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show student" do
+    # skip
     student = students(:one)
     get student_url(student)
     assert_response :success
