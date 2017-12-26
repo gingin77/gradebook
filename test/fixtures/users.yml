@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: username
+  password_digest: secret1!
+  identifiable: one (Student)
+
+two:
+  username: username2
+  password_digest: secret1!
