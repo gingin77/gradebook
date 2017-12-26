@@ -8,3 +8,4 @@ one:
 two:
   username: username2
   password_digest: secret1!
+  identifiable: 
