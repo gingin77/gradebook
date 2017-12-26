@@ -8,4 +8,10 @@ one:
 two:
   username: username2
   password_digest: secret1!
-  identifiable: 
+  identifiable:
+
+three:
+  username: mmcgonagall1
+  password_digest: secret1!
+  identifiable_id: 1
+  identifiable_type: Teacher

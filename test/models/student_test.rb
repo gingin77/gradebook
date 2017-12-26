@@ -47,6 +47,16 @@ class StudentTest < ActiveSupport::TestCase
     assert_not student.destroyed?
   end
 
+  test 'student can access user_id and password' do
+    stud_id = @stud_w_4_courses_not_incld_physics.id
+    stud_id2 = @stud_w_4_courses_not_incld_physics.id
+    associated_user = User.find_by_identifiable_id(stud_id)
+    associated_user2 = User.find_by_identifiable_id(stud_id2)
+    assert_kind_of User, associated_user
+    assert_kind_of User, associated_user2
+  end
+
+
   def teardown
     Rails.cache.clear
   end

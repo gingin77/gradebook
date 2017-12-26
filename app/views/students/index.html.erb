@@ -1,8 +1,8 @@
 <h1>All of the students at Super Awesome University</h1>
-<% @students.map do |student| %>
-<ul>
-  <li>
-    <%= student.name %>
+<% @students.each_with_index.map do |student, index| %>
+<ul class="list-group">
+  <li class="list-group-item">
+    <%= index + 1 %>) <%= student.name %>
   </li>
 </ul>
 <% end %>

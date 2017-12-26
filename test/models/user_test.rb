@@ -4,6 +4,8 @@ class UserTest < ActiveSupport::TestCase
   setup do
     @user1 = users(:one)
     @user2 = users(:two)
+    @student_user = @user1
+    @teacher_user = users(:three)
   end
 
   test 'user is valid' do
@@ -23,7 +25,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'identifiable user belongs to a student' do
-    assert_equal "Student", @user1.identifiable_type
+    assert_equal "Student", @student_user.identifiable_type
   end
 
   test 'usernames are unique' do
@@ -43,5 +45,13 @@ class UserTest < ActiveSupport::TestCase
     @user1.password_digest = nil
     @user1.save
     assert_not @user1.valid?
+  end
+
+  test 'user can be a teacher' do
+    assert_equal "Teacher", @teacher_user.identifiable_type
+  end
+
+  test 'teacher user has a password' do
+    assert_not_nil @teacher_user.password_digest
   end
 end
