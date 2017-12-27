@@ -5,6 +5,7 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all
+    @gpas_array = GradeConverter.gpas_for_multiple_studs(@students)
   end
 
   def show
