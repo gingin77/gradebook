@@ -3,7 +3,8 @@
 one:
   username: username
   password_digest: secret1!
-  identifiable: one (Student)
+  identifiable_id: 1
+  identifiable_type: Student
 
 two:
   username: username2

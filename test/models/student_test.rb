@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
   setup do
-    @stud_w_4_courses_not_incld_physics = students(:one)
+    @stud_w_4_courses_not_incld_physics = students(:five)
     @stud_w_7_courses = students(:two)
     @stud_w_3_courses = students(:three)
     @stud_to_delete = students(:four)
@@ -39,7 +39,7 @@ class StudentTest < ActiveSupport::TestCase
   end
 
   test 'when a student drops a course, the student and course remain in db, but the grade record is dropped' do
-    grade_to_drop = grades(:one)
+    grade_to_drop = grades(:fix_31)
     student, course = grade_to_drop.student, grade_to_drop.course
     grade_to_drop.destroy
     assert grade_to_drop.destroyed?
@@ -48,12 +48,14 @@ class StudentTest < ActiveSupport::TestCase
   end
 
   test 'student can access user_id and password' do
-    stud_id = @stud_w_4_courses_not_incld_physics.id
-    stud_id2 = @stud_w_4_courses_not_incld_physics.id
+    stud_id = students(:one).id
+    puts stud_id
+    stud_id2 = students(:two).id
+    puts stud_id2
     associated_user = User.find_by_identifiable_id(stud_id)
     associated_user2 = User.find_by_identifiable_id(stud_id2)
-    assert_kind_of User, associated_user
-    assert_kind_of User, associated_user2
+    assert_not_nil associated_user
+    assert_not_nil associated_user2
   end
 
 

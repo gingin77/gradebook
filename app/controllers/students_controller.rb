@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  before_action :logged_in?
+
   def new
     @student = Student.new
   end

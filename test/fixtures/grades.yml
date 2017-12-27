@@ -237,3 +237,29 @@ fix_30:
   percentage:
   student: fix_30
   course: organic_chemisty
+
+
+fix_31:
+  percentage:
+  student: fix_31
+  course: computer_science
+
+other_one:
+  percentage: 90.7
+  student: five
+  course: organic_chemisty
+
+other_two:
+  percentage: 43.4
+  student: five
+  course: computer_science
+
+other_three:
+  percentage: 88.4
+  student: five
+  course: calculus
+
+other_four:
+  percentage: 97.3
+  student: five
+  course: wizardry

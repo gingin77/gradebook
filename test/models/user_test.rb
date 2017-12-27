@@ -54,4 +54,12 @@ class UserTest < ActiveSupport::TestCase
   test 'teacher user has a password' do
     assert_not_nil @teacher_user.password_digest
   end
+
+  test 'user can access students name' do
+    assert_equal "Harry Potter", @user1.get_proper_name
+  end
+
+  test 'get user type' do
+    assert_equal "Teacher", @teacher_user.identifiable_type
+  end
 end

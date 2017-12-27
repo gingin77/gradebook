@@ -1,8 +1,10 @@
 one:
   name: Harry Potter
+  id: 1
 
 two:
   name: Hermoine Granger
+  id: 2
 
 three:
   name: Ron Weasley
@@ -10,6 +12,9 @@ three:
 
 four:
   name: Ginny Weasley
+
+five:
+  name: someone else
 
 fix_1:
   name: person_1
