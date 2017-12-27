@@ -8,10 +8,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @gpas_array.sort_by { |s| -s[:gpa] }.map do |s| %>
+    <% @gpas_array&.map do |s| %>
     <tr>
-      <td scope="row"><%= link_to s[:name], student_path(s[:index]) %></td>
-      <td class="text-center"><%= s[:gpa].round(2) %></td>
+      <td scope="row"><%= link_to s[:name], student_path(s[:index] + 1) %></td>
+      <td class="text-center"><%= s[:gpa]&.round(2) %></td>
     </tr>
     <% end %>
   </tbody>
