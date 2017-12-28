@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   setup do
     @user1 = users(:one)
     @user2 = users(:two)
+    @user5 = users(:five)
     @student_user = @user1
     @teacher_user = users(:three)
   end
@@ -41,7 +42,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user1.valid?
   end
 
-  test 'user has a password' do
+  test 'user must have a password' do
     @user1.password_digest = nil
     @user1.save
     assert_not @user1.valid?
@@ -53,5 +54,15 @@ class UserTest < ActiveSupport::TestCase
 
   test 'teacher user has a password' do
     assert_not_nil @teacher_user.password_digest
+  end
+
+  test 'user can access students name' do
+    skip
+    name = ??
+    assert_equal name, @user1.get_proper_name
+  end
+
+  test 'get user type' do
+    assert_equal "Teacher", @teacher_user.identifiable_type
   end
 end

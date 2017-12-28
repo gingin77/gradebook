@@ -42,18 +42,16 @@ class StudentTest < ActiveSupport::TestCase
     grade_to_drop = grades(:one)
     student, course = grade_to_drop.student, grade_to_drop.course
     grade_to_drop.destroy
+
     assert grade_to_drop.destroyed?
     assert_not course.destroyed?
     assert_not student.destroyed?
   end
 
-  test 'student can access user_id and password' do
+  test 'student id can be used to located the associated user id' do
     stud_id = @stud_w_4_courses_not_incld_physics.id
-    stud_id2 = @stud_w_4_courses_not_incld_physics.id
     associated_user = User.find_by_identifiable_id(stud_id)
-    associated_user2 = User.find_by_identifiable_id(stud_id2)
-    assert_kind_of User, associated_user
-    assert_kind_of User, associated_user2
+    assert_not_nil User, associated_user
   end
 
 

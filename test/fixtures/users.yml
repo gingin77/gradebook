@@ -15,3 +15,10 @@ three:
   password_digest: secret1!
   identifiable_id: 1
   identifiable_type: Teacher
+
+
+five:
+  username: username5
+  password_digest: secret1!
+  identifiable_id: 5
+  identifiable_type: Student
