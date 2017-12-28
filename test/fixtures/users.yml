@@ -19,14 +19,14 @@ three:
 
 five:
   username: unauthorized_user_st
-  password_digest:
+  password_digest: secret1!
   identifiable_id: 5
   identifiable_type: Student
   id: 5
 
 six:
   username: authorized_user_st
-  password_digest: <%= BCrypt::Password.create("secret1!", cost: 4) %>
-  # identifiable_id: 6
-  # identifiable_type: Student
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  identifiable_id: 6
+  identifiable_type: Student
   id: 6

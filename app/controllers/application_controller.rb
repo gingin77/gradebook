@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
+    current_user != nil
     redirect_to login_path unless current_user
   end
 end
