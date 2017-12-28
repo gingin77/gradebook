@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  get '/home', to: 'users#index'
+
   resources :students
   resources :courses, only: [:show, :index]
   resources :grades, except: [:index]
