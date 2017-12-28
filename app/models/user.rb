@@ -7,4 +7,12 @@ class User < ApplicationRecord
     new_user_type = UserType.new(self)
     new_user_type.get_name
   end
+
+  def student?
+    self.identifiable_type == "Student"
+  end
+
+  def teacher?
+    self.identifiable_type == "Teacher"
+  end
 end

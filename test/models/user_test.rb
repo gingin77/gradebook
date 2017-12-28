@@ -9,6 +9,16 @@ class UserTest < ActiveSupport::TestCase
     @teacher_user = users(:three)
   end
 
+  test 'is student?' do
+    assert @user1.student?
+    refute @teacher_user.student?
+  end
+
+  test 'is teacher?' do
+    assert @teacher_user.teacher?
+    refute @user1.teacher?
+  end
+
   test 'user is valid' do
     assert @user1.valid?
   end
