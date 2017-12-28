@@ -12,9 +12,13 @@ three:
 four:
   name: Ginny Weasley
 
-five:
-  name: user_student_model
+stud_u_creds:
+  name: student_user_PLUS_creds
   id: 5
+
+stud_u_no_creds:
+  name: student_user_NO_creds
+  id: 6
 
 <% 50.times do |n| %>
 student_fix_<%= n %>:
