@@ -1,15 +1,5 @@
 <h1>Gradebook Login Page</h1>
 
-<% if @user.errors.any? %>
-  <h2>Please correct the problems below before signing up.</h2>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-
 <%= form_tag login_path do %>
   <div class="form-group">
     <%= label_tag :username %>
