@@ -1,17 +1,23 @@
 require 'test_helper'
 
 class CoursesControllerTest < ActionDispatch::IntegrationTest
-  test "should get course index" do
-    # skip
-    get courses_url
-    assert_response :success
+  test "redirect if user is NOT logged in" do
+    get courses_path
+    assert_equal 302, status
+    assert_redirected_to login_path
   end
 
-  test "should get course show" do
-    # skip
-    course = courses(:physics)
-    get course_url(course)
-    assert_response :success
-  end
+  # test "allow access to courses index page once logged in" do
+  #   get courses_path
+  #   assert_equal 200, status
+  #   assert_response :success
+  #   assert_redirected_to login_path
+  # end
+  #
+  # test "should get course show" do
+  #   course = courses(:physics)
+  #   get course_url(course)
+  #   assert_response :success
+  # end
 
 end

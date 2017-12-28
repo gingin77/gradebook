@@ -42,10 +42,18 @@ class StudentTest < ActiveSupport::TestCase
     grade_to_drop = grades(:one)
     student, course = grade_to_drop.student, grade_to_drop.course
     grade_to_drop.destroy
+
     assert grade_to_drop.destroyed?
     assert_not course.destroyed?
     assert_not student.destroyed?
   end
+
+  test 'student id can be used to located the associated user id' do
+    stud_id = @stud_w_4_courses_not_incld_physics.id
+    associated_user = User.find_by_identifiable_id(stud_id)
+    assert_not_nil User, associated_user
+  end
+
 
   def teardown
     Rails.cache.clear

@@ -1,13 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-physics:
-  course_title: Physics
+calculus:
+  course_title: Calculus
+  teacher_id: 1
 
 art_history_two:
   course_title: Art History Survey II
+  teacher_id: 1
 
-calculus:
-  course_title: Calculus
+organic_chemisty:
+  course_title: Organic Chemisty
+  teacher_id: 2
+
+physics:
+  course_title: Physics
 
 wizardry:
   course_title: Wizardry
@@ -17,9 +23,6 @@ english:
 
 computer_science:
   course_title: Computer Science
-
-organic_chemisty:
-  course_title: Organic Chemisty
 
 quidditch:
   course_title: Quidditch

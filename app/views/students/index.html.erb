@@ -1,8 +1,18 @@
 <h1>All of the students at Super Awesome University</h1>
-<% @students.map do |student| %>
-<ul>
-  <li>
-    <%= student.name %>
-  </li>
-</ul>
-<% end %>
+
+<table class="table table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Student</th>
+      <th scope="col" class="text-center">GPA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @gpas_array&.map do |s| %>
+    <tr>
+      <td scope="row"><%= link_to s[:name], student_path(s[:index] + 1) %></td>
+      <td class="text-center"><%= s[:gpa]&.round(2) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

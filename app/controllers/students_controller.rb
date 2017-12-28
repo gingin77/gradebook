@@ -1,10 +1,13 @@
 class StudentsController < ApplicationController
+  before_action :logged_in?
+
   def new
     @student = Student.new
   end
 
   def index
     @students = Student.all
+    @gpas_array = GradeConverter.gpas_for_multiple_studs(@students)
   end
 
   def show

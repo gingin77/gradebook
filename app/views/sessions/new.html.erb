@@ -1,0 +1,17 @@
+<h1>Gradebook Login Page</h1>
+
+<%= form_tag login_path do %>
+  <div class="form-group">
+    <%= label_tag :username %>
+    <%= text_field_tag :username, params[:username], class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :password %>
+    <%= password_field_tag :password, placeholder="Password", class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= submit_tag "Login", class: "btn btn-success" %>
+  </div>
+<% end %>

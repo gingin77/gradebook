@@ -14,13 +14,13 @@ class CourseTest < ActiveSupport::TestCase
     assert @course_wizardry.destroyed?
   end
 
-  test 'when course is dropped, grade record is removed' do
+  test 'when a course is dropped, a grade record is removed' do
     grade_to_delete = @course_physics.grades
     @course_physics.destroy
     assert_empty grade_to_delete
   end
 
-  test 'when course is dropped, multiple grade records are removed' do
+  test 'when a course is dropped, multiple grade records are removed' do
     grades_to_delete = @course_wizardry.grades
     @course_wizardry.destroy
     assert_empty grades_to_delete

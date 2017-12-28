@@ -39,4 +39,14 @@ class GradeConverter
     pts = ltrs.map { |l| LTR_TO_GRD_PTS.select { |k, _| k == l}.values }.flatten
     pts.sum/pts.length unless pts.length.zero?
   end
+
+  def self.gpas_for_multiple_studs(students)
+    students.each_with_index.map do |s, i|
+      {
+        :index => i,
+        :name => s.name,
+        :gpa => GradeConverter.grds_to_gpa(s.id)
+      }
+    end
+  end
 end
