@@ -4,8 +4,10 @@ class GradeTest < ActiveSupport::TestCase
   setup do
     @grade_valid_w_perct = grades(:one)
     @grade_valid_without_perct = grades(:thirteen)
+
     @stud_w_4_courses = students(:one)
     @stud_w_3_courses_incld_quidditch = students(:three)
+
     @course_quidditch = courses(:quidditch)
     @course_physics = courses(:physics)
     @course_w_32_students = courses(:organic_chemisty)
@@ -58,7 +60,7 @@ class GradeTest < ActiveSupport::TestCase
 
   test 'course size is limited to 32 students' do
     grade = Grade.new
-    grade.student = students(:fix_49)
+    grade.student = students(:student_fix_49)
     grade.course = @course_w_32_students
     assert_not grade.save
   end

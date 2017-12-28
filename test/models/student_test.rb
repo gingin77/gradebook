@@ -2,28 +2,26 @@ require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
   setup do
-    @stud_w_4_courses_not_incld_physics = students(:one)
-    @stud_w_7_courses = students(:two)
+    @stud_w_4_courses = students(:one)
     @stud_w_3_courses = students(:three)
     @stud_to_delete = students(:four)
-    @course_physics = courses(:physics)
-    @stud_new = students(:fix_6)
   end
 
   test 'student has 4 courses' do
-    assert_equal 4, @stud_w_4_courses_not_incld_physics.courses.length
+    assert_equal 4, @stud_w_4_courses.courses.length
   end
 
   test 'student with 4 courses is valid' do
-    assert @stud_w_4_courses_not_incld_physics.valid?
+    assert @stud_w_4_courses.valid?
   end
 
   test 'student cannot have more than 4 courses' do
-    assert !@stud_w_7_courses.valid?
+    stud_w_7_courses = students(:two)
+    assert !stud_w_7_courses.valid?
   end
 
   test 'up to 4 courses can be added for a student' do
-    @stud_w_3_courses.courses << @course_physics
+    @stud_w_3_courses.courses << courses(:physics)
     assert @stud_w_3_courses.save
   end
 
@@ -38,7 +36,7 @@ class StudentTest < ActiveSupport::TestCase
     assert_empty grades_to_delete
   end
 
-  test 'when a student drops a course, the student and course remain in db, but the grade record is dropped' do
+  test 'when a student drops a course, only the grade record is dropped' do
     grade_to_drop = grades(:one)
     student, course = grade_to_drop.student, grade_to_drop.course
     grade_to_drop.destroy
@@ -49,7 +47,7 @@ class StudentTest < ActiveSupport::TestCase
   end
 
   test 'student id can be used to located the associated user id' do
-    stud_id = @stud_w_4_courses_not_incld_physics.id
+    stud_id = @stud_w_4_courses.id
     associated_user = User.find_by_identifiable_id(stud_id)
     assert_not_nil User, associated_user
   end
