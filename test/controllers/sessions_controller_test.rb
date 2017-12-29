@@ -3,6 +3,7 @@ require 'test_helper'
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user_auth = users(:six)
+    @teacher_user = users(:three)
   end
 
   test 'logout path is generated and recognized' do
@@ -25,6 +26,35 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'p', "Welcome, #{@user_auth.get_proper_name} | Logout"
   end
 
+
+  test "unique student view is displayed on login" do
+    a_student = @user_auth
+    ability = Ability.new(a_student)
+    assert ability.can?(:read, Student)
+    assert_not ability.can?(:read, Grade)
+    log_in_as(a_student)
+    assert is_logged_in?
+    assert_redirected_to home_path
+    follow_redirect!
+    assert_template 'users/show'
+    assert_select "a[href=?]", student_path(@user_auth.identifiable_id)
+  end
+
+  test "unique teacher view is displayed on login" do
+    skip
+    a_teacher = @teacher_user
+    ability = Ability.new(a_teacher)
+    # assert_not ability.can?(:read, Student)
+    assert ability.can?(:read, Grade)
+    # log_in_as(a_teacher)
+    # assert is_logged_in?
+    # assert_redirected_to home_path
+    # follow_redirect!
+    # assert_template 'users/show'
+    # assert_select "a[href=?]", student_path(@user_auth.identifiable_id)
+  end
+
+
   test "login attempt invalid" do
     get login_path
     assert_template 'sessions/new'
@@ -46,11 +76,12 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Student", @user_auth.identifiable_type
   end
 
-  test "student user can view their current grades and courses offered" do
-    skip
-    student_user = Student.create!
-    ability = Ability.new(student_user)
-    # assert ability.can?(:show, Student)???
+  test "login as teacher" do
+    get login_path
+    assert_template 'sessions/new'
+    log_in_as(@teacher_user)
+    assert is_logged_in?
+    assert_equal "Teacher", @teacher_user.identifiable_type
   end
 
   def teardown

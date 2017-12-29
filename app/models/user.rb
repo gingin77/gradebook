@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def teacher?
     self.identifiable_type == "Teacher"
   end
+
+  # def admin?
+  #   self.identifiable_type == "Admin"
+  # end
 end

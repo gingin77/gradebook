@@ -1,4 +1,16 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
-<h1>Replace with user role-specific partials for Student, Teacher, and Admin.....</h1>
+<p>
+  Here are the options available to you:
+</p>
+<p>
+  <ul>
+    <% if can? :read, Student %>
+    <li><%= link_to "View your current courses and grades", student_path(@current_user.identifiable_id) %>
+    </li>
+    <% end %>
+    <% if can? :read, Course %>
+    <li>
+      <%= link_to "View full list of courses offered this term", courses_path %>
+    </li>
+    <% end %>
+  </ul>
+</p>

@@ -12,9 +12,10 @@ two:
 
 three:
   username: mmcgonagall1
-  password_digest: secret1!
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   identifiable_id: 1
   identifiable_type: Teacher
+  id: 1
 
 
 five:

@@ -2,11 +2,20 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # if user.identifiable_type == "Student"
-    #   can :read, :
-    # else
-    #   can :read, :all
-    # end
+    can :read, User
+    if user.student?
+      can :read, Student do |student|
+        student&.user == user
+      end
+      can :read, Course
+    elsif user.teacher?
+      can :manage, Grade {}
+
+      # If the block returns true then the user has that ability, otherwise they will be denied access.
+
+    # elsif user.admin?
+    #   can
+    end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
@@ -20,7 +29,7 @@ class Ability
     # The third argument is an optional hash of conditions to further filter the
     # objects.
     # For example, here the user can only update published articles.
-    #
+    # #
     #   can :update, Article, :published => true
     #
     # See the wiki for details:
