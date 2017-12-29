@@ -6,7 +6,23 @@ class UserTest < ActiveSupport::TestCase
     @user2 = users(:two)
     @user5 = users(:five)
     @student_user = @user1
-    @teacher_user = users(:three)
+    @teacher_user = users(:teacher)
+  end
+
+  test 'is student?' do
+    assert @user1.student?
+    refute @teacher_user.student?
+  end
+
+  test 'is teacher?' do
+    assert @teacher_user.teacher?
+    refute @user1.teacher?
+  end
+
+  test 'grade belongs to teacher?' do
+    grade_for_org_chem = grades(:one)
+    teacher_for_org_chem = users(:four)
+    assert teacher_for_org_chem.has_grade?(grade_for_org_chem)
   end
 
   test 'user is valid' do

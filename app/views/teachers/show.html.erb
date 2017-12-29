@@ -1,0 +1,9 @@
+<p>You are teaching <%= @teacher.courses.count %> courses this term. Click on course links below to manage each course roster and update your students' grades.
+</p>
+<ul>
+<% @teacher.courses.map do |c| %>
+  <li><%= link_to c.course_title, course_path(c.id)  %></li>
+<% end %>
+</ul>
+<br />
+<%= link_to "See full list of courses offered this term", courses_path %>

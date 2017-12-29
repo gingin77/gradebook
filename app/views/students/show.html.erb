@@ -1,4 +1,12 @@
-<th>Showing courses and grades for <%= @student.name %></p>
+<% if @current_user.admin? %>
+<p><%= link_to "Go back to viewing all Student's grades", students_path %></p>
+<br />
+<p>You are viewing grades for <%= @student.name %></p>
+<% end %>
+<p>Current term GPA: <%= @gpa&.round(2) %> out of 4.0</p>
+<% if @current_user.student? %>
+<p>Here are your courses and grades for the current term.</p>
+<% end %>
 <table class="table table-sm">
   <thead class="thead-light">
     <tr>
@@ -19,4 +27,11 @@
     <% end %>
   </tbody>
 </table>
-<p>GPA for current term: <%= @gpa&.round(2) %></p>
+<br />
+<% if @current_user.admin? %>
+<p>
+  <%= link_to "See full list of courses offered this term", courses_path %>
+</p>
+<% else %>
+<p>To see other courses offered this term, visit: <%= link_to "Course List", courses_path %></p>
+<% end %>

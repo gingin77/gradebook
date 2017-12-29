@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  rescue_from "CanCan::AccessDenied" do |exception|
+    flash[:danger] = "Access denied."
+    redirect_to home_path
+  end
 
   private
 
@@ -8,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
+    current_user != nil
     redirect_to login_path unless current_user
   end
 end

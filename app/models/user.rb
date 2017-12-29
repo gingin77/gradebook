@@ -7,4 +7,20 @@ class User < ApplicationRecord
     new_user_type = UserType.new(self)
     new_user_type.get_name
   end
+
+  def student?
+    self.identifiable_type == "Student"
+  end
+
+  def teacher?
+    self.identifiable_type == "Teacher"
+  end
+
+  def admin?
+    self.identifiable_type == "Admin"
+  end
+
+  def has_grade?(grade)
+    Teacher.find(self.identifiable_id).courses.map {|c| c.id }.include?(grade.course_id)
+  end
 end

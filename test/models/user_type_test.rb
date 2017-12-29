@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTypeTest < ActiveSupport::TestCase
   setup do
     @user5 = users(:five)
-    @teacher_user = users(:three)
+    @teacher_user = users(:teacher)
   end
 
   test 'the user class is recognized' do
