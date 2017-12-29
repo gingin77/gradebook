@@ -37,20 +37,20 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to home_path
     follow_redirect!
     assert_template 'users/show'
-    assert_select "a[href=?]", student_path(@user_auth.identifiable_id)
+    assert_select "a[href=?]", student_path(a_student.identifiable_id)
   end
 
   test "unique teacher view is displayed on login" do
-    skip
     a_teacher = @teacher_user
     ability = Ability.new(a_teacher)
-    # assert_not ability.can?(:read, Student)
-    assert ability.can?(:read, Grade)
-    # log_in_as(a_teacher)
-    # assert is_logged_in?
-    # assert_redirected_to home_path
-    # follow_redirect!
-    # assert_template 'users/show'
+    assert_not ability.can?(:read, Student)
+    assert ability.can?(:edit, Grade)
+    assert ability.can?(:manage, Course)
+    log_in_as(a_teacher)
+    assert is_logged_in?
+    assert_redirected_to home_path
+    follow_redirect!
+    assert_template 'users/show'
     # assert_select "a[href=?]", student_path(@user_auth.identifiable_id)
   end
 

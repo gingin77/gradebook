@@ -1,15 +1,19 @@
 <p>
-  Here are the options available to you:
+  You've been redirected to here. Choose from the links below to find what you need.
 </p>
 <p>
   <ul>
     <% if can? :read, Student %>
-    <li><%= link_to "View your current courses and grades", student_path(@current_user.identifiable_id) %>
+    <li><%= link_to "Your current courses and grades", student_path(@current_user.identifiable_id) %>
     </li>
     <% end %>
-    <% if can? :read, Course %>
+    <% if can? :read, Teacher %>
+    <li><%= link_to "Access your course rosters with student's grades", teacher_path(@current_user.identifiable_id) %>
+    </li>
+    <% end %>
+    <% if can? :index, Course %>
     <li>
-      <%= link_to "View full list of courses offered this term", courses_path %>
+      <%= link_to "See full list of courses offered this term", courses_path %>
     </li>
     <% end %>
   </ul>

@@ -5,7 +5,13 @@ Rails.application.routes.draw do
 
   get '/home', to: 'users#show'
 
-  resources :students
-  resources :courses, only: [:show, :index]
-  resources :grades, except: [:index]
+  resources :students, only: :show
+  resources :teachers, only: :show
+  
+  resources :courses, only: [:show, :index] do
+    resources :grades, except: [:index]
+  end
+
+
+
 end

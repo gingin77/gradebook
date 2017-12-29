@@ -13,17 +13,11 @@ class UserType
 
   def get_name
     if ut_type == "Student"
-      students_name
+      Student.find(ut_id).name
     elsif ut_type == "Teacher"
-      teachers_name
+      Teacher.find(ut_id).name
+    elsif ut_type == "Admin"
+      Admin.find(ut_id).name
     end
-  end
-
-  def students_name
-    Student.find(ut_id).name
-  end
-
-  def teachers_name
-    Teacher.find(ut_id).name
   end
 end

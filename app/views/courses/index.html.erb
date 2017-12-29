@@ -1,17 +1,32 @@
+<% if can? :read, Student %>
+<p><%= link_to "Go back to your current courses and grades", student_path(@current_user.identifiable_id) %>
+</p>
+<% end %>
+<% if can? :read, Teacher %>
+<p><%= link_to "Go back to your course rosters", teacher_path(@current_user.identifiable_id) %>
+</p>
+<% end %>
 <h1>Courses @Hogwarts</h1>
-
 <table class="table table-sm">
   <thead class="thead-light">
     <tr>
       <th scope="col">Course</th>
+      <th scope="col">Teacher</th>
       <th scope="col" class="text-center">Enrollment Count</th>
+      <% if @current_user.admin? %>
+        <th scope="col" class="text-center">Average Grade</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% @courses.sort_by { |c| -c.students.count }.map do |c| %>
     <tr>
-      <td scope="row"><%= link_to c.course_title, course_path(c.id) %></td>
+      <td scope="row"><%= c.course_title %></td>
+      <td><%= c.teachers_name %></td>
       <td class="text-center"><%= c.students.count %></td>
+      <% if @current_user.admin? %>
+        <td scope="col" class="text-center"><%= c.course_average.round(2) %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

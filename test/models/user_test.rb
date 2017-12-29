@@ -19,6 +19,12 @@ class UserTest < ActiveSupport::TestCase
     refute @user1.teacher?
   end
 
+  test 'grade belongs to teacher?' do
+    grade_for_org_chem = grades(:one)
+    teacher_for_org_chem = users(:four)
+    assert teacher_for_org_chem.has_grade?(grade_for_org_chem)
+  end
+
   test 'user is valid' do
     assert @user1.valid?
   end

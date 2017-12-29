@@ -8,7 +8,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash.now[:success]= "Successful login"
-      redirect_to home_path
+      redirect_to student_path(user.identifiable_id) if user.student?
+      redirect_to teacher_path(user.identifiable_id) if user.teacher?
+      redirect_to courses_path if user.admin?
     else
       flash.now[:danger] = 'Username or password is invalid'
       render :new

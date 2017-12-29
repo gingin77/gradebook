@@ -25,4 +25,9 @@ class CourseTest < ActiveSupport::TestCase
     @course_wizardry.destroy
     assert_empty grades_to_delete
   end
+
+  test 'average grade in a course can be accessed from a course instance directly' do
+    c_average = Grade.where(course_id: @course_wizardry.id).average(:percentage).to_f
+    assert_equal c_average, @course_wizardry.course_average
+  end
 end

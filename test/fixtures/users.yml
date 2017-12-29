@@ -17,6 +17,12 @@ three:
   identifiable_type: Teacher
   id: 1
 
+four:
+  username: organic_chemisty_teacher
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  identifiable_id: 2
+  identifiable_type: Teacher
+  id: 4
 
 five:
   username: unauthorized_user_st
