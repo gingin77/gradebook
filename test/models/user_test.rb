@@ -6,7 +6,7 @@ class UserTest < ActiveSupport::TestCase
     @user2 = users(:two)
     @user5 = users(:five)
     @student_user = @user1
-    @teacher_user = users(:three)
+    @teacher_user = users(:teacher)
   end
 
   test 'is student?' do

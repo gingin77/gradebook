@@ -10,7 +10,7 @@ two:
   password_digest: secret1!
   identifiable:
 
-three:
+teacher:
   username: mmcgonagall1
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   identifiable_id: 1
@@ -37,3 +37,10 @@ six:
   identifiable_id: 6
   identifiable_type: Student
   id: 6
+
+admin:
+  username: admin_user
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  identifiable_id: 1
+  identifiable_type: Admin
+  id: 7

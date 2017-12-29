@@ -3,6 +3,6 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = Teacher.find(params[:id])
-    authorize! :read, @teacher
+    authorize! :show, @teacher
   end
 end

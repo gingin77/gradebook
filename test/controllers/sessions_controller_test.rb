@@ -3,7 +3,7 @@ require 'test_helper'
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user_auth = users(:six)
-    @teacher_user = users(:three)
+    @teacher_user = users(:teacher)
   end
 
   test 'logout path is generated and recognized' do

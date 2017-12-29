@@ -1,9 +1,14 @@
-<% if can? :read, Student %>
+<% if @current_user.student? %>
 <p><%= link_to "Go back to your current courses and grades", student_path(@current_user.identifiable_id) %>
 </p>
 <% end %>
-<% if can? :read, Teacher %>
+<% if @current_user.teacher? %>
 <p><%= link_to "Go back to your course rosters", teacher_path(@current_user.identifiable_id) %>
+</p>
+<% end %>
+<% if @current_user.admin? %>
+<p>
+  <%= link_to "View complete list of all Students' grades", students_path %>
 </p>
 <% end %>
 <h1>Courses @Hogwarts</h1>
