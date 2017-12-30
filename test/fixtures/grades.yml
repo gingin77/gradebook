@@ -1,12 +1,15 @@
+<% norm = Rubystats::NormalDistribution.new(80.0, 14.4) %>
+<% percentages = 400.times.map { norm.rng.round(3) } %>
+
 <% 30.times do |n| %>
 grade_fix_<%= n %>:
-  percentage:
+  percentage: <%= percentages[n] %>
   student: student_fix_<%= n %>
   course: organic_chemisty
 <% end %>
 
 one:
-  percentage: 90.7
+  percentage: 93.3
   student: one
   course: organic_chemisty
 

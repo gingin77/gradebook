@@ -1,10 +1,9 @@
-10.times do |s|
-  Teacher.create(name: Faker::TwinPeaks.character)
-end
+TEACHERS_NAMES = ["Joyce Byers", "Jim Hopper", "Dale Cooper", "Major Garland Briggs", "Dr. Lawrence Jacoby", "Severus Snape", "Sirius Black", "Lord Voldemort", "Rubeus Hagrid", "Gilderoy Lockhart", "Alastor (Mad-Eye) Moody", "Ms. Frizzle", "Mr. Belding", "Professor Annalise Keating", "Detective Nate Lahey", "Frank Delfino", "Bonnie Winterbottom"]
 
+TEACHERS_NAMES.each {|t| Teacher.create( name: t )}
 teachers = Teacher.all
 
-COURSE_NAMES = ["Calculus", "Computer Science", "Mechanical Engineering", "Psychology", "Anatomy and Physiology", "Art History Survey I", "Art History Survey II", "Biology", "Organic Chemisty", "Statistics", "Applied Physics", "Ecology and Evolution", "Biotechnology and Society", "English", "Computer Science", "General Chemisty Lab", "Sociology", "Wizardry", "Invisibility", "Quidditch"]
+COURSE_NAMES = ["Calculus", "Computer Science", "Mechanical Engineering", "Psychology", "Anatomy and Physiology", "Art History Survey I", "Art History Survey II", "Biology", "Organic Chemisty", "Statistics", "Applied Physics", "Ecology and Evolution", "Biotechnology and Society", "English", "Computer Science", "General Chemisty Lab", "Sociology", "Wizardry", "Invisibility", "Quidditch", "Criminal Law", "Civil Defense"]
 
 COURSE_NAMES.each do |ct|
   Course.create(
@@ -12,42 +11,37 @@ COURSE_NAMES.each do |ct|
     teacher_id: teachers.sample.id
   )
 end
-
 courses = Course.all
-norm = Rubystats::NormalDistribution.new(80.0, 14.4)
-percentages = 100.times.map { norm.rng.round(3) }
 
-50.times do |s|
-  student = Student.create(name: Faker::HarryPotter.character)
+ADMIN_NAMES = ["Albus Dumbledore", "Minerva McGonagall"]
+ADMIN_NAMES.each {|a| Admin.create( name: a )}
+admins = Admin.all
+
+norm = Rubystats::NormalDistribution.new(80.0, 14.4)
+percentages = 400.times.map { norm.rng.round(3) }
+
+STUDENT_NAMES = ["Mike Wheeler", "Eleven", "Dustin Henderson", "Lucas Sinclair", "Nancy Wheeler", "Will Byers", "Maxine Mayfield", "Steve Harrington", "Billy Hargrove", "Laura Palmer", "Audrey Horne", "Donna Hayward", "James Hurley", "Shelly Johnson", "Bobby Briggs", "Vincent Crabbe", "Harry Potter", "Ron Weasley", "Hermione Granger", "Draco Malfoy", "Teddy Lupin", "Ernie Macmillan", "Cormac McLaggen", "Graham Montague", "Theodore Nott", "Pansy Parkinson", "Parvati Patil", "Zack Morris", "Kelly Kapowski", "Screech Powers", "A.C. Slater", "Jessie Spano", "Lisa Turtle", "Stacey Carosi", "Brandon Walsh", "Kelly Taylor", "Steve Sanders", "Andrea Zuckerman", "Dylan McKay", "David Silver", "Donna Martin", "Clay Jensen", "Hannah Baker", "Tony Padilla", "Jessica Davis", "Justin Foley", "Bryce Walker", "Alex Standall", "Zach Dempsey", "Tyler Down", "Lainie Jensen", "Courtney Crimsen", "Wes Gibbins", "Connor Walsh", "Rebecca Sutter", "Michaela Pratt", "Asher Millstone", "Oliver Hampton", "Laurel Castillo"]
+
+STUDENT_NAMES.each {|s| Student.create(name: s)}
+students = Student.all
+
+students.each do |s|
   4.times do |g|
     Grade.create(
-      :student_id => student.id,
+      :student_id => s.id,
       :course_id => courses.sample.id,
       :percentage => percentages.sample
     )
   end
 end
 
-######### User types below have assocatiated passwords #########
-
-test_student = Student.create(name: "Harry Potter")
-user_hp = User.create(password: "secret1!", username: "hpotter1", identifiable: test_student)
-
-4.times do |g|
-  Grade.create(
-    :student_id => test_student.id,
-    :course_id => courses.sample.id,
-    :percentage => percentages.sample
+users_to_be = teachers + admins + students
+users_to_be.each do |u|
+  name = u.name
+  username = (name[0] + name.split(' ')[name.split.length - 1]).downcase
+  User.create(
+    password: "secret!",
+    username: username,
+    identifiable: u
   )
 end
-
-test_teacher = Teacher.create(name: "Minerva McGonagall")
-user_teacher = User.create(password: "secret1!", username: "mmcgonagall1", identifiable: test_teacher)
-
-test_teachers_first_course = courses[0]
-test_teachers_first_course.teacher_id = test_teacher.id
-test_teachers_first_course.save
-
-test_teachers_second_course = courses[1]
-test_teachers_second_course.teacher_id = test_teacher.id
-test_teachers_second_course.save
