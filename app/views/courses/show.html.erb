@@ -4,7 +4,8 @@
 <br />
 <h1>Roster for <%= @course.course_title %></h1>
 <p>Average for enrolled students: <%= @course_avg %></p>
-
+<p>Current enrollment: <%= @course.grades.count %></p>
+<br />
 <table class="table table-sm">
   <thead class="thead-light">
     <tr>
@@ -21,8 +22,8 @@
       <td scope="row"><%= g.get_student_name %></td>
       <td class="text-center"><%= g.percentage&.round(1) %></td>
       <td class="text-center"><%= g.percnt_to_ltr %></td>
-      <td class="text-center">Update Grade</td>
-      <td class="text-center">Remove Student</td>
+      <td class="text-center"><%= link_to "Update Grade Score", edit_course_grade_path(@course.id, g.id) %></td>
+      <td class="text-center"><%= link_to "Drop Student", course_grade_path(@course.id, g.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
     <% @course.grades.select {|gp| gp.percentage.nil? }.map do |g| %>
@@ -31,7 +32,7 @@
       <td class="text-center"></td>
       <td class="text-center"></td>
       <td class="text-center"><%= link_to "Add Grade Score", edit_course_grade_path(@course.id, g.id) %></td>
-      <td class="text-center">Remove Student</td>
+      <td class="text-center"><%= link_to "Drop Student", course_grade_path(@course.id, g.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>

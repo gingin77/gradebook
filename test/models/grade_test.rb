@@ -10,7 +10,7 @@ class GradeTest < ActiveSupport::TestCase
 
     @course_quidditch = courses(:quidditch)
     @course_physics = courses(:physics)
-    @course_w_32_students = courses(:organic_chemisty)
+    @course_w_16_students = courses(:organic_chemisty)
   end
 
   test 'grade percentage can be left blank' do
@@ -58,10 +58,10 @@ class GradeTest < ActiveSupport::TestCase
     assert_not grade.save
   end
 
-  test 'course size is limited to 32 students' do
+  test 'course size is limited to 16 students' do
     grade = Grade.new
     grade.student = students(:student_fix_49)
-    grade.course = @course_w_32_students
+    grade.course = @course_w_16_students
     assert_not grade.save
   end
 
