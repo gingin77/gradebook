@@ -17,7 +17,13 @@
     </nav>
     <div id="container">
       <% flash.each do |type, msg| %>
-        <%= content_tag(:div, msg, class: "alert alert-#{type}") %>
+        <% if msg.kind_of?(Array) %>
+          <% msg.each do |_, m| %>
+          <%= content_tag(:div, m.join(''), class: "alert alert-#{type}") %>
+        <% end %>
+        <% elsif msg.kind_of?(String) %>
+          <%= content_tag(:div, msg, class: "alert alert-#{type}") %>
+        <% end %>
       <% end %>
       <%= yield %>
     </div>

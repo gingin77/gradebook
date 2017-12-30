@@ -18,8 +18,8 @@ class GradesController < ApplicationController
       flash[:success] = @student.name + " has been added to " + @course.course_title
       redirect_to course_path(@course.id)
     else
-      flash.now[:danger] = "The student you selected is NOT elligible to be added to this course."
-      render 'new'
+      flash[:danger] = @grade.errors.messages
+      redirect_to course_path(@course.id)
     end
   end
 
