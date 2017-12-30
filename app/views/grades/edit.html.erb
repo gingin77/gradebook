@@ -1,0 +1,17 @@
+<p>
+  You are updating <%= @grade.get_student_name %>'s grade for <%= @course.course_title %>
+</p>
+<% if @grade.percentage.nil? %>
+  <p>
+    A grade has not yet been submitted. Please enter the student's grade:
+  </p>
+<% else %>
+  <p>
+    The current grade is listed as <%= @grade.percentage %>. If you need to change this grade. Submit a new score:
+  </p>
+<% end %>
+<%= form_for @grade, url: {action: "update"} do |f| %>
+  <%= f.label :percentage %><br />
+  <%= f.text_field :percentage %>
+  <%= f.submit("Submit") %>
+<% end %>

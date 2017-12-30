@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @course.grades.sort_by {|g| -g.percentage } .map do |g| %>
+    <% @course.grades.select {|gp| !gp.percentage.nil? }.sort_by{|p| -p.percentage }.map do |g| %>
     <tr>
       <td scope="row"><%= g.get_student_name %></td>
       <td class="text-center"><%= g.percentage&.round(1) %></td>
@@ -25,5 +25,17 @@
       <td class="text-center">Remove Student</td>
     </tr>
     <% end %>
+    <% @course.grades.select {|gp| gp.percentage.nil? }.map do |g| %>
+    <tr>
+      <td scope="row"><%= g.get_student_name %></td>
+      <td class="text-center"></td>
+      <td class="text-center"></td>
+      <td class="text-center"><%= link_to "Add Grade Score", edit_course_grade_path(@course.id, g.id) %></td>
+      <td class="text-center">Remove Student</td>
+    </tr>
+    <% end %>
   </tbody>
 </table>
+<p>
+  <%= link_to "Add a new student to this course",  new_course_grade_path(@course.id) %>
+</p>

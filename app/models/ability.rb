@@ -16,9 +16,7 @@ class Ability
       can :manage, Course do |c|
         c.teacher_id == user.identifiable_id
       end
-      can :manage, Grade do |g|
-        user.has_grade?(g)
-      end
+      can :manage, Grade
     elsif user.admin?
       can :manage, Student
     end
