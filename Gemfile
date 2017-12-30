@@ -21,11 +21,9 @@ gem 'turbolinks', '~> 5'
 # gem 'redis', '~> 3.0'
 
 gem 'bcrypt', '~> 3.1.7'
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'rubystats', '~> 0.2.5'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'jquery-rails'
-gem 'rails-controller-testing'
 gem 'cancancan'
 
 # Use Capistrano for deployment

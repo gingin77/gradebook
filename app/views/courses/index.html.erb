@@ -11,7 +11,7 @@
   <%= link_to "View complete list of all Students' grades", students_path %>
 </p>
 <% end %>
-<h1>Courses @Hogwarts</h1>
+<h1>Courses @The Upside Down Academy</h1>
 <table class="table table-sm">
   <thead class="thead-light">
     <tr>
@@ -24,13 +24,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @courses.sort_by { |c| -c.students.count }.map do |c| %>
+    <% @courses&.sort_by { |cs| -cs.students.count }.map do |c| %>
     <tr>
-      <td scope="row"><%= c.course_title %></td>
-      <td><%= c.teachers_name %></td>
-      <td class="text-center"><%= c.students.count %></td>
+      <td scope="row"><%= c&.course_title %></td>
+      <td><%= c&.teachers_name %></td>
+      <td class="text-center"><%= c&.students.count %></td>
       <% if @current_user.admin? %>
-        <td scope="col" class="text-center"><%= c.course_average.round(2) %></td>
+        <td scope="col" class="text-center"><%= c&.course_average&.round(2) %></td>
       <% end %>
     </tr>
     <% end %>
