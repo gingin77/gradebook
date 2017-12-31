@@ -48,7 +48,7 @@ admin:
   id: 7
 
 
-teacher_user_three:
+teach_use_3:
   username: thirdteacher
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   identifiable_id: 3
