@@ -7,3 +7,7 @@ one:
 two:
   id: 2
   name: Ms. Teacher
+
+three:
+  id: 3
+  name: Third Teacher

@@ -8,6 +8,7 @@ grade_fix_<%= n %>:
   course: organic_chemisty
 <% end %>
 
+# Four grades for student one
 one:
   percentage: 93.3
   student: one
@@ -28,6 +29,17 @@ four:
   student: one
   course: wizardry
 
+thirteen:
+  percentage:
+  student: two
+  course: organic_chemisty
+
+fourteen:
+  percentage: 200
+  student: two
+  course: computer_science
+
+# Seven grades for student two
 five:
   percentage: 85.2
   student: two
@@ -53,6 +65,7 @@ nine:
   student: two
   course: physics
 
+# Three grades for student three
 ten:
   percentage: 77.8
   student: three
@@ -68,16 +81,8 @@ twelve:
   student: three
   course: art_history_two
 
-thirteen:
-  percentage:
-  student: two
-  course: organic_chemisty
 
-fourteen:
-  percentage: 200
-  student: two
-  course: computer_science
-
+# Four grades for student 4
 fifteen:
   percentage: 72
   student: four

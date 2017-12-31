@@ -73,9 +73,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'user can access students name' do
-    skip
-    name = ??
-    assert_equal name, @user1.get_proper_name
+    name = teachers(:one).name
+    user = users(:teacher)
+    assert_equal name, user.get_proper_name
   end
 
   test 'get user type' do

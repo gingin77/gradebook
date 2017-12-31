@@ -1,21 +1,24 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  username: username
-  password_digest: secret1!
-  identifiable: one (Student)
-
-two:
-  username: username2
-  password_digest: secret1!
-  identifiable:
-
 teacher:
   username: mmcgonagall1
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   identifiable_id: 1
   identifiable_type: Teacher
   id: 1
+  # user.id = 1
+
+one:
+  username: username
+  password_digest: secret1!
+  identifiable: one (Student)
+  # user.id = 2
+
+two:
+  username: username2
+  password_digest: secret1!
+  identifiable:
+  # user.id = 3
 
 four:
   username: organic_chemisty_teacher
@@ -43,3 +46,11 @@ admin:
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   identifiable: one (Admin)
   id: 7
+
+
+teacher_user_three:
+  username: thirdteacher
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  identifiable_id: 3
+  identifiable_type: Teacher
+  id: 8
