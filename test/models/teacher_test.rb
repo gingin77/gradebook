@@ -26,7 +26,7 @@ class TeacherTest < ActiveSupport::TestCase
     teacher_of_org_chem = teachers(:two)
     organic_chemisty = courses(:organic_chemisty)
     x = organic_chemisty.students.count
-    assert_equal x, teacher_of_org_chem.students.count
+    assert_equal x, teacher_of_org_chem.grades.count
   end
 
   test 'teacher has enrollment counts for different classes' do

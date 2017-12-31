@@ -3,7 +3,6 @@
   <head>
     <title>Gradebook</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -17,10 +16,10 @@
     </nav>
     <div id="container">
       <% flash.each do |type, msg| %>
-        <% if msg.kind_of?(Array) %>
+        <% if msg.kind_of?(Hash) %>
           <% msg.each do |_, m| %>
-          <%= content_tag(:div, m.join(''), class: "alert alert-#{type}") %>
-        <% end %>
+            <%= content_tag(:div, m.join(''), class: "alert alert-#{type}") %>
+          <% end %>
         <% elsif msg.kind_of?(String) %>
           <%= content_tag(:div, msg, class: "alert alert-#{type}") %>
         <% end %>

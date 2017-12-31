@@ -10,7 +10,9 @@ class Course < ApplicationRecord
     percentage_grds = self.grades.map do |g|
       g.percentage
     end
-    percentage_grds&.inject do
-      |acc, g| acc ? acc + g : g end.to_f.round(2)/(percentage_grds.size unless percentage_grds.size.zero?)
+    sum = percentage_grds.sum do |g|
+      g.nil? ? 0 : g
+    end
+    sum/(percentage_grds.size unless percentage_grds.size.zero?)
   end
 end

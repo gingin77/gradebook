@@ -1,0 +1,24 @@
+<h2>Welcome to The Upside Down Academy Gradebook</h2>
+
+<div>
+  <p>The following students do not yet have a full course load (ie. 4 courses) and are eligible to be added to new courses by teachers.
+    <ul>
+    <% @students_who_need_more_classes.take(5).map do |st| %>
+        <li><%= st.name %></li>
+    <% end %>
+    </ul>
+  </p>
+</div>
+
+<div>
+  <p>The following teachers have just one course or none at all!
+    <ul>
+    <% @teachers_with_1_or_fewer_classes.map do |t| %>
+        <li><%= t.name %></li>
+    <% end %>
+    </ul>
+  </p>
+</div>
+
+<p><%= link_to "Click here to reach the Login page", login_path %>
+</p>

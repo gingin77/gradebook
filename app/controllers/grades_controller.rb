@@ -1,7 +1,7 @@
 class GradesController < ApplicationController
-  # before_action :logged_in?
   load_and_authorize_resource :course
   load_and_authorize_resource :grade, through: :course
+
   before_action :get_course
   before_action :get_student, only: :create
   before_action :get_grade, only: [:edit, :update, :destroy]
@@ -12,10 +12,8 @@ class GradesController < ApplicationController
 
   def create
     if !@student.nil?
-      @grade = Grade.new do |g|
-        g.course_id = @course.id
-        g.student_id = @student.id
-      end
+      @grade.course_id = @course.id
+      @grade.student_id = @student.id
     else
       flash[:danger] = "The name you entered could not be found in our system."
       redirect_to course_path(@course.id) and return

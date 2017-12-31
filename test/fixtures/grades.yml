@@ -84,7 +84,7 @@ twelve:
 
 # Four grades for student 4
 fifteen:
-  percentage: 72
+  percentage: 72.0
   student: four
   course: wizardry
 
