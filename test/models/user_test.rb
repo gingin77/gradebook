@@ -2,83 +2,79 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @user1 = users(:one)
-    @user2 = users(:two)
-    @user5 = users(:five)
-    @student_user = @user1
-    @teacher_user = users(:teacher)
+    @user_stud_type = users(:one)
+    @user_no_id_type = users(:one_non_identifiable)
+    @user_teacher_type = users(:teach_user_auth)
   end
 
-  test 'is student?' do
-    assert @user1.student?
-    refute @teacher_user.student?
-  end
-
-  test 'is teacher?' do
-    assert @teacher_user.teacher?
-    refute @user1.teacher?
-  end
-
-  test 'grade belongs to teacher?' do
-    grade_for_org_chem = grades(:one)
-    teacher_for_org_chem = users(:four)
-    assert teacher_for_org_chem.has_grade?(grade_for_org_chem)
-  end
-
+  # Tests related to user validations
   test 'user is valid' do
-    assert @user1.valid?
+    assert @user_stud_type.valid?
   end
 
   test 'user is identifiable' do
-    assert_not @user1.identifiable.blank?
+    assert_not @user_stud_type.identifiable.blank?
   end
 
   test 'user is not identifiable' do
-    assert @user2.identifiable.blank?
+    assert @user_no_id_type.identifiable.blank?
   end
 
   test 'user is not valid without identifiable' do
-    assert_not @user2.valid?
+    assert_not @user_no_id_type.valid?
   end
 
-  test 'identifiable user belongs to a student' do
-    assert_equal "Student", @student_user.identifiable_type
+  test 'identifiable type method return a string' do
+    assert_equal "Student", @user_stud_type.identifiable_type
   end
 
-  test 'usernames are unique' do
-    name1 = @user1.username
-    name2 = @user2.username
+  test 'usernames in db are unique' do
+    name1 = @user_stud_type.username
+    name2 = @user_no_id_type.username
     assert name1 != name2
   end
 
   test 'usernames are required to be unique' do
-    name2 = @user2.username
-    @user1.username = name2
-    @user1.save
-    assert_not @user1.valid?
+    name2 = @user_no_id_type.username
+    @user_stud_type.username = name2
+    @user_stud_type.save
+    assert_not @user_stud_type.valid?
   end
 
   test 'user must have a password' do
-    @user1.password_digest = nil
-    @user1.save
-    assert_not @user1.valid?
+    @user_stud_type.password_digest = nil
+    @user_stud_type.save
+    assert_not @user_stud_type.valid?
   end
 
   test 'user can be a teacher' do
-    assert_equal "Teacher", @teacher_user.identifiable_type
-  end
-
-  test 'teacher user has a password' do
-    assert_not_nil @teacher_user.password_digest
-  end
-
-  test 'user can access students name' do
-    name = teachers(:one).name
-    user = users(:teacher)
-    assert_equal name, user.get_proper_name
+    assert_equal "Teacher", @user_teacher_type.identifiable_type
   end
 
   test 'get user type' do
-    assert_equal "Teacher", @teacher_user.identifiable_type
+    assert_equal "Teacher", @user_teacher_type.identifiable_type
+  end
+
+  # Tests for custom methods added to the User model
+  test 'user can access name property on affiliated class instance' do
+    name = teachers(:one).name
+    user = users(:teach_user_auth)
+    assert_equal name, user.get_proper_name
+  end
+
+  test 'is student?' do
+    assert @user_stud_type.student?
+    refute @user_teacher_type.student?
+  end
+
+  test 'is teacher?' do
+    assert @user_teacher_type.teacher?
+    refute @user_stud_type.teacher?
+  end
+
+  test 'is admin?' do
+    admin = users(:admin_user)
+    assert admin.admin?
+    refute @user_teacher_type.admin?
   end
 end

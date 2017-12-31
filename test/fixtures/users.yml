@@ -1,56 +1,46 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-teacher:
-  username: mmcgonagall1
+teach_user_auth:
+  username: jbeyers
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   identifiable_id: 1
   identifiable_type: Teacher
   id: 1
-  # user.id = 1
+  # user.id = 1 is needed to pass test/controllers/teachers_controller_test.rb
+
+physics_t_user:
+  username: physteacher
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  identifiable_id: 3
+  identifiable_type: Teacher
+
+org_chem_t_user:
+  username: organic_chemisty_teacher
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  identifiable_id: 2
+  identifiable_type: Teacher
+
+admin_user:
+  username: admin_user
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  identifiable: one (Admin)
 
 one:
   username: username
   password_digest: secret1!
   identifiable: one (Student)
-  # user.id = 2
 
-two:
-  username: username2
+one_non_identifiable:
+  username: user_non_identifiable
   password_digest: secret1!
   identifiable:
-  # user.id = 3
 
-four:
-  username: organic_chemisty_teacher
-  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
-  identifiable_id: 2
-  identifiable_type: Teacher
-  id: 4
-
-five:
+unauthorized_user_st:
   username: unauthorized_user_st
   password_digest: secret1!
   identifiable_id: 5
   identifiable_type: Student
-  id: 5
 
-six:
+authorized_user_st:
   username: authorized_user_st
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   identifiable_id: 6
   identifiable_type: Student
-  id: 6
-
-admin:
-  username: admin_user
-  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
-  identifiable: one (Admin)
-  id: 7
-
-
-teach_use_3:
-  username: thirdteacher
-  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
-  identifiable_id: 3
-  identifiable_type: Teacher
-  id: 8

@@ -14,7 +14,8 @@ organic_chemisty:
 
 physics:
   course_title: Physics
-
+  teacher_id: 3
+  
 wizardry:
   course_title: Wizardry
 

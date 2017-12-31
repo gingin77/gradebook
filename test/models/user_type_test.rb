@@ -2,8 +2,8 @@ require 'test_helper'
 
 class UserTypeTest < ActiveSupport::TestCase
   setup do
-    @user5 = users(:five)
-    @teacher_user = users(:teacher)
+    @user5 = users(:unauthorized_user_st)
+    @teacher_user = users(:teach_user_auth)
   end
 
   test 'the user class is recognized' do

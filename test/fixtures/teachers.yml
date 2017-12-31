@@ -11,3 +11,4 @@ two:
 three:
   id: 3
   name: Third Teacher
+  # Accessed via users.yml in grades_controller_test >> @physics_teach_user = users(:physics_t_user)

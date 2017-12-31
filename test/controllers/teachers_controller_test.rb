@@ -2,8 +2,8 @@ require 'test_helper'
 
 class TeachersControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @teacher = users(:teacher)
-    @student = users(:six)
+    @teacher = users(:teach_user_auth)
+    @student = users(:authorized_user_st)
   end
 
   test "should get show" do

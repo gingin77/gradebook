@@ -29,6 +29,7 @@ four:
   student: one
   course: wizardry
 
+# Seven grades for student two
 thirteen:
   percentage:
   student: two
@@ -39,7 +40,6 @@ fourteen:
   student: two
   course: computer_science
 
-# Seven grades for student two
 five:
   percentage: 85.2
   student: two

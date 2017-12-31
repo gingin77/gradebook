@@ -52,7 +52,6 @@ class StudentTest < ActiveSupport::TestCase
     assert_not_nil User, associated_user
   end
 
-
   def teardown
     Rails.cache.clear
   end

@@ -2,9 +2,9 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @st_user_auth = users(:six)
-    @teach_u_auth = users(:teacher)
-    @admin_u_auth = users(:admin)
+    @st_user_auth = users(:authorized_user_st)
+    @teach_u_auth = users(:teach_user_auth)
+    @admin_u_auth = users(:admin_user)
   end
 
   test "login with valid information allows access" do
@@ -57,6 +57,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
     assert_redirected_to student_path(@st_user_auth.identifiable_id)
     follow_redirect!
+    assert_select 'p', "Welcome, #{@st_user_auth.get_proper_name} | Logout"
     assert_select 'th', "Course"
     assert_select "a[href=?]", courses_path
   end
@@ -76,6 +77,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
     assert_redirected_to teacher_path(@teach_u_auth.identifiable_id)
     follow_redirect!
+    assert_select 'p', "Welcome, #{@teach_u_auth.get_proper_name} | Logout"
     assert_select "a[href=?]", course_path(teachers_course.id)
   end
 
@@ -86,6 +88,11 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_not ability.can?(:index, Student)
     assert ability.can?(:edit, Grade)
     assert ability.can?(:manage, Course)
+  end
+
+  test 'auth teacher can visit own course pages but gets redirected if tries to access other teachers courses' do
+    log_in_as(@teach_u_auth)
+    get teacher_path(@teach_u_auth.identifiable_id)
   end
 
   test "login as student works" do

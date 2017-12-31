@@ -4,8 +4,9 @@ class Grade < ApplicationRecord
 
   validates_numericality_of :percentage, less_than: 101, :allow_blank => true
   validates_uniqueness_of :course_id, scope: :student_id
+
   validate :limit_a_student_to_4_courses, on: :create
-  validate :place_cap_on_course_enrollment_to_16, on: :create
+  validate :cap_course_enrollment_at_16, on: :create
 
   def limit_a_student_to_4_courses
     students_grds = Grade.where(student_id: self.student_id)
@@ -14,7 +15,7 @@ class Grade < ApplicationRecord
     end
   end
 
-  def place_cap_on_course_enrollment_to_16
+  def cap_course_enrollment_at_16
     grd_records_studs_in_a_course = Grade.where(course_id: self.course_id)
     if grd_records_studs_in_a_course.length == 16
       errors.add(:course_id, "Course enrollment is limited to 16 students per term")

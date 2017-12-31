@@ -2,33 +2,33 @@ require 'test_helper'
 
 class GradeTest < ActiveSupport::TestCase
   setup do
-    @grade_valid_w_perct = grades(:one)
-    @grade_valid_without_perct = grades(:thirteen)
+    @grade_w_percentage = grades(:one)
 
     @stud_w_4_courses = students(:one)
-    @stud_w_3_courses_incld_quidditch = students(:three)
+    @stud_w_3_courses = students(:three)
 
-    @course_quidditch = courses(:quidditch)
-    @course_physics = courses(:physics)
-    @course_w_16_students = courses(:organic_chemisty)
+    @physics = courses(:physics)
   end
 
-  test 'grade percentage can be left blank' do
-    assert @grade_valid_without_perct.percentage.nil?
-  end
-
+# Tests related to grade percentage value
   test 'grade record has a grade percentage value' do
-    refute @grade_valid_w_perct.percentage.nil?
+    assert !@grade_w_percentage.percentage.nil?
+  end
+
+  test 'grade percentage can be blank' do
+    grade_w_no_percentage = grades(:thirteen)
+    assert grade_w_no_percentage.percentage.nil?
   end
 
   test 'grade percentage is a finite number' do
-    assert @grade_valid_w_perct.percentage.finite?
+    assert @grade_w_percentage.percentage.finite?
   end
 
   test 'grade percentage falls within expected range' do
-    assert (0..105).include? (@grade_valid_w_perct.percentage)
+    assert (0..101).include? (@grade_w_percentage.percentage)
   end
 
+# Tests related to validations on the grade record
   test 'should not save grade record without student or course' do
     grade = Grade.new
     assert_not grade.save
@@ -36,32 +36,36 @@ class GradeTest < ActiveSupport::TestCase
 
   test 'should save grade record with student and course' do
     grade = Grade.new
-    grade.student, grade.course, grade.percentage = @stud_w_3_courses_incld_quidditch, @course_physics, ''
+    grade.course, grade.student = @physics, @stud_w_3_courses
     assert grade.save
   end
 
   test 'should not save grade record when percentage is too high' do
     grade = Grade.new
-    grade.student, grade.course, grade.percentage = @stud_w_3_courses_incld_quidditch, @course_physics, 200
+    grade.course, grade.student, grade.percentage = @physics, @stud_w_3_courses, 200
     assert_not grade.save
   end
 
-  test 'student cannot be enrolled in same class twice during a term' do
+  test 'student cannot be enrolled in same class twice' do
+    # @stud_w_3_courses has a grade record associated with the quidditch course
+    quidditch = courses(:quidditch)
     grade = Grade.new
-    grade.student, grade.course, grade.percentage = @stud_w_3_courses_incld_quidditch, @course_quidditch
+    grade.course, grade.student = quidditch, @stud_w_3_courses
     assert_not grade.save
   end
 
-  test 'should not save new grade record for student who already has 4 classes' do
+# Tests related to custom validation methods in grade.rb
+  test 'student can not have greades for more than 4 classes' do
     grade = Grade.new
-    grade.student, grade.course = @stud_w_4_courses, @course_physics
+    grade.student, grade.course = @stud_w_4_courses, @physics
     assert_not grade.save
   end
 
   test 'course size is limited to 16 students' do
+    course_w_16_students = courses(:organic_chemisty)
     grade = Grade.new
-    grade.student = students(:student_fix_49)
-    grade.course = @course_w_16_students
+    grade.student = students(:student_fix_14)
+    grade.course = course_w_16_students
     assert_not grade.save
   end
 

@@ -1,26 +1,31 @@
 one:
   name: Harry Potter
+  # associated with 4 courses
 
 two:
   name: Hermoine Granger
-
+  # associated with 7 courses
 
 three:
   name: Ron Weasley
-
+  # associated with 3 courses
 
 four:
   name: Ginny Weasley
+  # associated with 4 courses
 
 stud_u_creds:
   name: student_user_PLUS_creds
   id: 5
+  # needed for user authentication tests
 
 stud_u_no_creds:
   name: student_user_NO_creds
   id: 6
+  # needed for user authentication tests
 
-<% 50.times do |n| %>
+# Students created with name 'student_fix_#' are used in the organic_chemisty class to test course capacity validation; students 0-13 are in the class + 2 others with unique names. The test tries to add 'student_fix_14' to the class and the save should be rejected.
+<% 15.times do |n| %>
 student_fix_<%= n %>:
-  name: <%= "student#{n}" %>
+  name: <%= "student #{n}" %>
 <% end %>

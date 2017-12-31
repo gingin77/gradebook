@@ -1,6 +1,7 @@
 class GradesController < ApplicationController
-  before_action :logged_in?
-  load_and_authorize_resource :grade
+  # before_action :logged_in?
+  load_and_authorize_resource :course
+  load_and_authorize_resource :grade, through: :course
   before_action :get_course
   before_action :get_student, only: :create
   before_action :get_grade, only: [:edit, :update, :destroy]
@@ -10,9 +11,14 @@ class GradesController < ApplicationController
   end
 
   def create
-    @grade = Grade.new do |g|
-      g.course_id = @course.id
-      g.student_id = @student.id
+    if !@student.nil?
+      @grade = Grade.new do |g|
+        g.course_id = @course.id
+        g.student_id = @student.id
+      end
+    else
+      flash[:danger] = "The name you entered could not be found in our system."
+      redirect_to course_path(@course.id) and return
     end
     if @grade.save
       flash[:success] = @student.name + " has been added to " + @course.course_title
@@ -62,6 +68,7 @@ class GradesController < ApplicationController
   end
 
   def get_student
-    @student = Student.find_by(name: params[:students_name])
+    query = params[:students_name].split(' ').map {|w| w.camelcase}.join(' ')
+    @student = Student.find_by(name: query)
   end
 end

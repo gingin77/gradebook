@@ -19,8 +19,4 @@ class User < ApplicationRecord
   def admin?
     self.identifiable_type == "Admin"
   end
-
-  def has_grade?(grade)
-    Teacher.find(self.identifiable_id).courses.map {|c| c.id }.include?(grade.course_id)
-  end
 end
