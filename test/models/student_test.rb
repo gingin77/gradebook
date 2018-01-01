@@ -52,6 +52,10 @@ class StudentTest < ActiveSupport::TestCase
     assert_not_nil User, associated_user
   end
 
+  test 'student has a gpa' do
+    gpa = @stud_w_4_courses.gpa
+  end
+
   def teardown
     Rails.cache.clear
   end

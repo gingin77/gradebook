@@ -3,21 +3,21 @@ class UserType
     @user = user
   end
 
-  def ut_id
+  def ui_id
     @user.identifiable_id
   end
 
-  def ut_type
+  def ui_type
     @user.identifiable_type
   end
 
   def get_name
-    if ut_type == "Student"
-      Student.find(ut_id).name
-    elsif ut_type == "Teacher"
-      Teacher.find(ut_id).name
-    elsif ut_type == "Admin"
-      Admin.find(ut_id).name
+    if ui_type == "Student"
+      Student.find(ui_id).name
+    elsif ui_type == "Teacher"
+      Teacher.find(ui_id).name
+    elsif ui_type == "Admin"
+      Admin.find(ui_id).name
     end
   end
 end

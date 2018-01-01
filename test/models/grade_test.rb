@@ -28,6 +28,15 @@ class GradeTest < ActiveSupport::TestCase
     assert (0..101).include? (@grade_w_percentage.percentage)
   end
 
+# Tests related to converting percentage score
+  test 'grade percentages convert to letter grades' do
+    assert_equal "A", @grade_w_percentage.percnt_to_ltr
+  end
+
+  test 'grade percentages convert to points for gpa' do
+    assert_equal "4.0", @grade_w_percentage.ltr_to_grd_pts
+  end
+
 # Tests related to validations on the grade record
   test 'should not save grade record without student or course' do
     grade = Grade.new
