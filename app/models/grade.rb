@@ -31,10 +31,12 @@ class Grade < ApplicationRecord
   end
 
   def percnt_to_ltr
-    GradeConverter.percnt_to_ltr(self.percentage)
+    letter = SingleGradeConverter.new(self.percentage)
+    letter.percnt_to_ltr
   end
 
   def ltr_to_grd_pts
-    GradeConverter.ltr_to_grd_pts(self.percnt_to_ltr)
+    grd_pts = SingleGradeConverter.new(self.percentage)
+    grd_pts.ltr_to_grd_pts
   end
 end

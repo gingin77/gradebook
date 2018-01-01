@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
   has_many :grades, dependent: :destroy
   has_many :students, through: :grades
+  belongs_to :teacher
 
   def teachers_name
     Teacher.find_by_id(self.teacher_id)&.name
