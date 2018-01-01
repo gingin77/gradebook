@@ -3,8 +3,6 @@ require "grade_consts.rb"
 class GPAFinder
   include GradeConsts
 
-  # attr_reader :gp_average
-
   def initialize(student_id)
     @percentages = Grade.where(student_id: student_id).map { |g| g.percentage }
   end

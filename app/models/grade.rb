@@ -1,4 +1,8 @@
+require "grade_consts.rb"
+
 class Grade < ApplicationRecord
+  include GradeConsts
+
   belongs_to :course
   belongs_to :student
 
@@ -31,12 +35,10 @@ class Grade < ApplicationRecord
   end
 
   def percnt_to_ltr
-    letter = SingleGradeConverter.new(self.percentage)
-    letter.percnt_to_ltr
+    GradeConsts::PRCT_TO_LTR.select {|k, v| break v if k.cover? self.percentage }
   end
 
   def ltr_to_grd_pts
-    grd_pts = SingleGradeConverter.new(self.percentage)
-    grd_pts.ltr_to_grd_pts
+    GradeConsts::LTR_TO_GRD_PTS.select {|k, _| k == percnt_to_ltr}.values.join('')
   end
 end
