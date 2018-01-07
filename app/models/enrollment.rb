@@ -6,7 +6,7 @@ class Enrollment < ApplicationRecord
   belongs_to :course
   belongs_to :student
 
-  validates_numericality_of :percentage, less_than: 101, :allow_blank => true
+  validates_numericality_of :grade, less_than: 101, :allow_blank => true
   validates_uniqueness_of :course_id, scope: :student_id
 
   validate :limit_a_student_to_4_courses, on: :create
@@ -21,7 +21,7 @@ class Enrollment < ApplicationRecord
   end
 
   def percnt_to_ltr
-    GradeConsts::PRCT_TO_LTR.select {|k, v| break v if k.cover? self.percentage }
+    GradeConsts::PRCT_TO_LTR.select {|k, v| break v if k.cover? self.grade }
   end
 
   def ltr_to_grd_pts
@@ -31,8 +31,8 @@ class Enrollment < ApplicationRecord
   private
 
   def limit_a_student_to_4_courses
-    students_grds = Enrollment.where(student_id: self.student_id)
-    if students_grds.length == 4
+    students_enrollments = Enrollment.where(student_id: self.student_id)
+    if students_enrollments.length == 4
       errors.add(:student_id, "Students cannot be enrolled in more than 4 courses")
     end
   end

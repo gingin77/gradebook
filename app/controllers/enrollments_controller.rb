@@ -31,12 +31,12 @@ class EnrollmentsController < ApplicationController
   end
 
   def update
-    @enrollment.update_attributes(percentage: params[:percentage])
+    @enrollment.update_attributes(grade: params[:grade])
     if @enrollment.save
       redirect_to course_path(@course.id)
       flash[:success] = "The grade has been updated."
     else
-      flash.now[:danger] = "Your entry cannot be saved to the database. You entered: " + @enrollment.percentage.to_s
+      flash.now[:danger] = "Your entry cannot be saved to the database. You entered: " + @enrollment.grade.to_s
       render 'edit'
     end
   end
@@ -54,7 +54,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def enrollment_params
-    params.permit(:percentage)
+    params.permit(:grade)
   end
 
   def get_course

@@ -5,15 +5,15 @@
 <p>
   You are updating <%= @enrollment.get_student_name %>'s grade for <%= @course.course_title %>
 </p>
-<% if @enrollment.percentage.nil? %>
+<% if @enrollment.grade.nil? %>
   <p>
     A grade has not yet been submitted. Please enter the student's grade:
   </p>
 <% end %>
 <%= form_tag(course_enrollment_path, :method => "patch") do %>
   <p>
-    <%= label_tag :percentage %>
-    <%= text_field_tag :percentage, @enrollment.percentage %>
+    <%= label_tag :grade %>
+    <%= text_field_tag :grade, @enrollment.grade %>
   </p>
   <br />
   <%= hidden_field :students_name, :value => @enrollment.get_student_name %>

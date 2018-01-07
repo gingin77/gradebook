@@ -30,14 +30,14 @@ COURSE_NAMES.each {|ct| Course.create(course_title: ct, teacher_id: teachers.sam
 courses = Course.all
 
 norm = Rubystats::NormalDistribution.new(80.0, 14.4)
-percentages = 400.times.map { norm.rng.round(3) }
+grades = 400.times.map { norm.rng.round(3) }
 
 students.each do |s|
   4.times do |g|
-    Grade.create(
+    Enrollment.create(
       :student_id => s.id,
       :course_id => courses.sample.id,
-      :percentage => percentages.sample
+      :grade => grades.sample
     )
   end
 end
