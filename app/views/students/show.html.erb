@@ -1,5 +1,5 @@
 <% if @current_user.admin? %>
-  <p><%= link_to "Go back to viewing all Student's grades", students_path %></p>
+  <p><%= link_to "Go back to viewing all Students' grades", students_path %></p>
   <br />
   <p>You are viewing grades for <%= @student.name %></p>
 <% end %>
@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @student.grades.map do |g| %>
+    <% @student.enrollments.map do |g| %>
     <tr>
       <td scope="row"><%= g.get_course_title %></td>
       <td class="text-center"><%= g.percentage&.round(1) %></td>

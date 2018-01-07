@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   resources :teachers, only: :show
 
   resources :courses, only: [:show, :index] do
-    resources :grades, except: [:index, :show]
+    resources :enrollments, except: [:index, :show]
   end
 end

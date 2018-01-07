@@ -4,7 +4,7 @@
 <br />
 <h1>Roster for <%= @course.course_title %></h1>
 <p>Average for enrolled students: <%= @course_avg %></p>
-<p>Current enrollment: <%= @course.grades.count %></p>
+<p>Current enrollment: <%= @course.enrollments.count %></p>
 <br />
 <table class="table table-sm">
   <thead class="thead-light">
@@ -17,26 +17,26 @@
     </tr>
   </thead>
   <tbody>
-    <% @course.grades.select {|gp| !gp.percentage.nil? }.sort_by{|p| -p.percentage }.map do |g| %>
+    <% @course.enrollments.select {|gp| !gp.percentage.nil? }.sort_by{|p| -p.percentage }.map do |g| %>
     <tr>
       <td scope="row"><%= g.get_student_name %></td>
       <td class="text-center"><%= g.percentage&.round(1) %></td>
       <td class="text-center"><%= g.percnt_to_ltr %></td>
-      <td class="text-center"><%= link_to "Update Grade Score", edit_course_grade_path(@course.id, g.id) %></td>
-      <td class="text-center"><%= link_to "Drop Student", course_grade_path(@course.id, g.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td class="text-center"><%= link_to "Update Grade Score", edit_course_enrollment_path(@course.id, g.id) %></td>
+      <td class="text-center"><%= link_to "Drop Student", course_enrollment_path(@course.id, g.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
-    <% @course.grades.select {|gp| gp.percentage.nil? }.map do |g| %>
+    <% @course.enrollments.select {|gp| gp.percentage.nil? }.map do |g| %>
     <tr>
       <td scope="row"><%= g.get_student_name %></td>
       <td class="text-center"></td>
       <td class="text-center"></td>
-      <td class="text-center"><%= link_to "Add Grade Score", edit_course_grade_path(@course.id, g.id) %></td>
-      <td class="text-center"><%= link_to "Drop Student", course_grade_path(@course.id, g.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td class="text-center"><%= link_to "Add Grade Score", edit_course_enrollment_path(@course.id, g.id) %></td>
+      <td class="text-center"><%= link_to "Drop Student", course_enrollment_path(@course.id, g.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 <p>
-  <%= link_to "Add a new student to this course",  new_course_grade_path(@course.id) %>
+  <%= link_to "Add a new student to this course",  new_course_enrollment_path(@course.id) %>
 </p>

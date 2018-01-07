@@ -4,7 +4,7 @@ class GPAFinder
   include GradeConsts
 
   def initialize(student_id)
-    @percentages = Grade.where(student_id: student_id).map { |g| g.percentage }
+    @percentages = Enrollment.where(student_id: student_id).map { |g| g.percentage }
   end
 
   def gp_average

@@ -48,7 +48,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert ability.can?(:index, Student)
     assert_not ability.can?(:manage, Course)
     assert_not ability.can?(:show, Teacher)
-    assert_not ability.can?(:edit, Grade)
+    assert_not ability.can?(:edit, Enrollment)
   end
 
 
@@ -68,7 +68,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert ability.can?(:index, Course)
     assert_not ability.can?(:show, Teacher)
     assert_not ability.can?(:index, Student)
-    assert_not ability.can?(:manage, Grade)
+    assert_not ability.can?(:manage, Enrollment)
   end
 
   test "auth teacher lands on correct page after login" do
@@ -86,7 +86,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert ability.can?(:show, Teacher)
     assert_not ability.can?(:show, Student)
     assert_not ability.can?(:index, Student)
-    assert ability.can?(:edit, Grade)
+    assert ability.can?(:edit, Enrollment)
     assert ability.can?(:manage, Course)
   end
 

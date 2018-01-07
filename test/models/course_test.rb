@@ -4,7 +4,7 @@ class CourseTest < ActiveSupport::TestCase
   setup do
     @course_wizardry = courses(:wizardry)
     @course_physics = courses(:physics)
-    @grade_rec_for_physics = grades(:nine)
+    @enrollment_rec_for_physics = enrollments(:nine)
   end
 
   test 'courses can be dropped' do
@@ -14,20 +14,20 @@ class CourseTest < ActiveSupport::TestCase
     assert @course_wizardry.destroyed?
   end
 
-  test 'when a course is dropped, a grade record is removed' do
-    grade_to_delete = @course_physics.grades
+  test 'when a course is dropped, a enrollment record is removed' do
+    enrollment_to_delete = @course_physics.enrollments
     @course_physics.destroy
-    assert_empty grade_to_delete
+    assert_empty enrollment_to_delete
   end
 
-  test 'when a course is dropped, multiple grade records are removed' do
-    grades_to_delete = @course_wizardry.grades
+  test 'when a course is dropped, multiple enrollment records are removed' do
+    enrollments_to_delete = @course_wizardry.enrollments
     @course_wizardry.destroy
-    assert_empty grades_to_delete
+    assert_empty enrollments_to_delete
   end
 
-  test 'average grade in a course can be accessed from a course instance directly' do
-    c_average = Grade.where(course_id: @course_wizardry.id).average(:percentage).to_f
+  test 'average enrollment in a course can be accessed from a course instance directly' do
+    c_average = Enrollment.where(course_id: @course_wizardry.id).average(:percentage).to_f
     assert_equal c_average, @course_wizardry.course_average
   end
 end

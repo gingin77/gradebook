@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
-  has_many :grades, dependent: :destroy
-  has_many :students, through: :grades
+  has_many :enrollments, dependent: :destroy
+  has_many :students, through: :enrollments
   belongs_to :teacher
 
   def teachers_name
@@ -8,7 +8,7 @@ class Course < ApplicationRecord
   end
 
   def course_average
-    percentage_grds = self.grades.map do |g|
+    percentage_grds = self.enrollments.map do |g|
       g.percentage
     end
     sum = percentage_grds.sum do |g|

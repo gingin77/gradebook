@@ -18,15 +18,15 @@ class TeacherTest < ActiveSupport::TestCase
     assert_equal 2, @teach_2_courses.courses.count
   end
 
-  test 'teacher has grades' do
-    assert_not_nil @teach_2_courses.grades
+  test 'teacher has enrollments' do
+    assert_not_nil @teach_2_courses.enrollments
   end
 
   test 'teacher with 1 course has students' do
     teacher_of_org_chem = teachers(:two)
     organic_chemisty = courses(:organic_chemisty)
     x = organic_chemisty.students.count
-    assert_equal x, teacher_of_org_chem.grades.count
+    assert_equal x, teacher_of_org_chem.enrollments.count
   end
 
   test 'teacher has enrollment counts for different classes' do
