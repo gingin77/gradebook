@@ -7,6 +7,6 @@ class Student < ApplicationRecord
 
   def gpa
     gpa = GPAFinder.new(self.id)
-    gpa = gpa.gp_average
+    gpa.gp_average
   end
 end
