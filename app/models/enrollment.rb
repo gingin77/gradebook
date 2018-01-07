@@ -1,6 +1,6 @@
 require "grade_consts.rb"
 
-class Grade < ApplicationRecord
+class Enrollment < ApplicationRecord
   include GradeConsts
 
   belongs_to :course
@@ -29,17 +29,17 @@ class Grade < ApplicationRecord
   end
 
   private
-  
+
   def limit_a_student_to_4_courses
-    students_grds = Grade.where(student_id: self.student_id)
+    students_grds = Enrollment.where(student_id: self.student_id)
     if students_grds.length == 4
-      errors.add(:student_id, "New grade records cannot be created for a student already enrolled in 4 courses")
+      errors.add(:student_id, "Students cannot be enrolled in more than 4 courses")
     end
   end
 
   def cap_course_enrollment_at_16
-    grd_records_studs_in_a_course = Grade.where(course_id: self.course_id)
-    if grd_records_studs_in_a_course.length == 16
+    num_studs_in_a_course = Enrollment.where(course_id: self.course_id)
+    if num_studs_in_a_course.length == 16
       errors.add(:course_id, "Course enrollment is limited to 16 students per term")
     end
   end

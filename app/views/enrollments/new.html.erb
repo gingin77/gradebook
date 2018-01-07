@@ -6,7 +6,7 @@
 
 <p>Students who are already enrolled in 4 courses cannot add another class without special permission. Submit a student's name below to see if they are eligible to be added.</p>
 
-<%= form_tag(course_grades_path, :method => "post") do  %>
+<%= form_tag(course_enrollments_path, :method => "post") do  %>
   <p>
     <%= label_tag :students_name %><br />
     <%= text_field_tag :students_name %>

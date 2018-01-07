@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    @course_avg = @course.grades.average(:percentage).round(2)
+    @course_avg = @course.enrollments.average(:percentage).round(2)
     authorize! :manage, @course
   end
 end

@@ -1,7 +1,7 @@
 class Student < ApplicationRecord
   has_one :user, as: :identifiable
-  has_many :grades, dependent: :destroy
-  has_many :courses, through: :grades
+  has_many :enrollments, dependent: :destroy
+  has_many :courses, through: :enrollments
 
   validates :courses, length: {maximum: 4}
 

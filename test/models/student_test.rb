@@ -30,18 +30,18 @@ class StudentTest < ActiveSupport::TestCase
     assert @stud_to_delete.destroyed?
   end
 
-  test 'when the student is deleted, all grades for the student are deleted' do
-    grades_to_delete = @stud_to_delete.grades
+  test 'when the student is deleted, all enrollments for the student are deleted' do
+    enrollments_to_delete = @stud_to_delete.enrollments
     @stud_to_delete.destroy
-    assert_empty grades_to_delete
+    assert_empty enrollments_to_delete
   end
 
-  test 'when a student drops a course, only the grade record is dropped' do
-    grade_to_drop = grades(:one)
-    student, course = grade_to_drop.student, grade_to_drop.course
-    grade_to_drop.destroy
+  test 'when a student drops a course, only the enrollment record is dropped' do
+    enrollment_to_drop = enrollments(:one)
+    student, course = enrollment_to_drop.student, enrollment_to_drop.course
+    enrollment_to_drop.destroy
 
-    assert grade_to_drop.destroyed?
+    assert enrollment_to_drop.destroyed?
     assert_not course.destroyed?
     assert_not student.destroyed?
   end

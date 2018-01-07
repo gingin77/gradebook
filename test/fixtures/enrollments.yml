@@ -2,13 +2,13 @@
 <% percentages = 400.times.map { norm.rng.round(3) } %>
 
 <% 14.times do |n| %>
-grade_fix_<%= n %>:
+enrollment_fix_<%= n %>:
   percentage: <%= percentages[n] %>
   student: student_fix_<%= n %>
   course: organic_chemisty
 <% end %>
 
-# Four grades for student one
+# Four enrollments for student one
 one:
   percentage: 93.3
   student: one
@@ -29,7 +29,7 @@ four:
   student: one
   course: wizardry
 
-# Seven grades for student two
+# Seven enrollments for student two
 thirteen:
   percentage:
   student: two
@@ -65,7 +65,7 @@ nine:
   student: two
   course: physics
 
-# Three grades for student three
+# Three enrollments for student three
 ten:
   percentage: 77.8
   student: three
@@ -82,7 +82,7 @@ twelve:
   course: art_history_two
 
 
-# Four grades for student 4
+# Four enrollments for student 4
 fifteen:
   percentage: 72.0
   student: four
