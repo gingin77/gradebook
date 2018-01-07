@@ -8,12 +8,12 @@ class Course < ApplicationRecord
   end
 
   def course_average
-    percentage_grds = self.enrollments.map do |g|
-      g.percentage
+    all_grades_in_course = self.enrollments.map do |g|
+      g.grade
     end
-    sum = percentage_grds.sum do |g|
+    sum = all_grades_in_course.sum do |g|
       g.nil? ? 0 : g
     end
-    sum/(percentage_grds.size unless percentage_grds.size.zero?)
+    sum/(all_grades_in_course.size unless all_grades_in_course.size.zero?)
   end
 end

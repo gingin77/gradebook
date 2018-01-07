@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180107163001) do
+ActiveRecord::Schema.define(version: 20180107174846) do
 
   create_table "admins", force: :cascade do |t|
     t.string "name"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180107163001) do
   end
 
   create_table "enrollments", force: :cascade do |t|
-    t.float "percentage"
+    t.float "grade"
     t.integer "student_id"
     t.integer "course_id"
     t.datetime "created_at", null: false

@@ -15,9 +15,9 @@ This application was built to meet specs for an [exercise for the Rails Develope
 ## Summary of My App Design - User interface
 **The app db needs to be populated with seed date before a user can successfully login.**
 
-* Once app is running locally, to interact with app as a user:
-* *Optional* Visit the */intro* url path to see a short list of students who are eligible to be added to courses (only teachers have this ability) and to see which teachers have 1 or 0 courses.
-* Visit: */login*
+* Once app is running locally, to interact with the app as a user:
+  * *Optional* Visit the */intro* url path to see a short list of students who are eligible to be added to courses (only teachers have this ability) and to see which teachers have 1 or 0 courses.
+  * Visit: */login*
     * **Any username inferred from the seed file can be used to login, but for convenience, here are some example user names to try out**
       * As an admin => adumbledore
       * As a teacher => pkeating
@@ -34,20 +34,13 @@ This application was built to meet specs for an [exercise for the Rails Develope
 
   * An Ability model is used to handle access permissions based on the User property, identifiable_type.
 
-  * The Course and Student models are joined in a *has_many, through* relationship via the Grade class. The Grades table holds foreign keys for courses and students. In addition to the foreign key columns, the Grades table has a single float property, 'percentage', which holds the numerical grade value for a student within a course.
+  * The Course and Student models are joined in a *has_many, through* relationship via the Enrollment class. The Enrollments table holds foreign keys for courses and students. In addition to the foreign key columns, the Enrollments table has a single float property, 'grade', which holds the numerical percentage grade value for a student within a course.
 
-  * The teacher class *has_many courses* and *has_many grades, through courses*. The course model *belongs_to teacher*.
+  * The teacher class *has_many courses* and *has_many enrollments, through courses*. The course model *belongs_to teacher*.
 
-  * A teacher can add or drop a student from courses they 'own' by creating or destroying a Grade record. Adding or adjusting the numerical grade for a student in a course is handled by the Grade#edit and #update actions.
+  * A teacher can add or drop a student from courses they 'own' by creating or destroying an Enrollment record. Adding or adjusting the numerical grade for a student in a course is handled by the Enrollments#edit and #update actions.
 
-  * Some standard ActiveRecord validations were used to maintain integrity of the Grades table. In addition, 2 custom validations were designed to block the creation of more than 4 Grade records for a given student and no more than 16 Grade records can be created for a given course.
-
-* Object-Oriented design and programming
-  * I tried to restrict logic in the models to validations and methods that involve ActiveRecord queries
-  * A few POROs were added to handle grade percentage > letter > GPA conversions and to support the polymorphic relationship between the User model and the models for specific user roles.
-
-* Ruby and Rails consistent with your experience
-  * I'd been reading about permissions handling with the CanCanCan gem and decided this project would be a good time to try it out.
+  * Some standard ActiveRecord validations were used to maintain integrity of the Enrollments table. In addition, 2 custom validations were designed to block the creation of more than 4 Enrollment records for a given student and no more than 16 Enrollment records can be created for a given course.
 
 * Test-Driven Development practices
-  * The Sessions and Grades controllers have the most integration tests. Other controllers have a few tests but since the most complex functionality was associated with adding and updating grade records by authenticated teacher-users, it made sense to write more tests for the Grades controller. This was my first time building a test-suite for an app and some of the tests I wrote in the beginning for the models might be a bit redundant with the controller integration tests I wrote later in the development process.
+  * The Sessions and Enrollments controllers have the most integration tests. Other controllers have a few tests but since the most complex functionality was associated with adding and updating grade records by authenticated teacher-users, it made sense to write more tests for the Enrollments controller. This was my first time building a test-suite for an app and some of the tests I wrote in the beginning for the models might be a bit redundant with the controller integration tests I wrote later in the development process.

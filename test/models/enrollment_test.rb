@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EnrollmentTest < ActiveSupport::TestCase
   setup do
-    @enrollment_w_percentage = enrollments(:one)
+    @enrollment_w_grade = enrollments(:one)
 
     @stud_w_4_courses = students(:one)
     @stud_w_3_courses = students(:three)
@@ -10,31 +10,31 @@ class EnrollmentTest < ActiveSupport::TestCase
     @physics = courses(:physics)
   end
 
-# Tests related to enrollment percentage value
-  test 'enrollment record has a enrollment percentage value' do
-    assert !@enrollment_w_percentage.percentage.nil?
+# Tests related to enrollment grade value
+  test 'enrollment record has a enrollment grade value' do
+    assert !@enrollment_w_grade.grade.nil?
   end
 
-  test 'enrollment percentage can be blank' do
-    enrollment_w_no_percentage = enrollments(:thirteen)
-    assert enrollment_w_no_percentage.percentage.nil?
+  test 'enrollment grade can be blank' do
+    enrollment_w_no_grade = enrollments(:thirteen)
+    assert enrollment_w_no_grade.grade.nil?
   end
 
-  test 'enrollment percentage is a finite number' do
-    assert @enrollment_w_percentage.percentage.finite?
+  test 'enrollment grade is a finite number' do
+    assert @enrollment_w_grade.grade.finite?
   end
 
-  test 'enrollment percentage falls within expected range' do
-    assert (0..101).include? (@enrollment_w_percentage.percentage)
+  test 'enrollment grade falls within expected range' do
+    assert (0..101).include? (@enrollment_w_grade.grade)
   end
 
-# Tests related to converting percentage score
-  test 'enrollment percentages convert to letter enrollments' do
-    assert_equal "A", @enrollment_w_percentage.percnt_to_ltr
+# Tests related to converting numeric grade to letter or gpa
+  test 'enrollment grades convert to letter enrollments' do
+    assert_equal "A", @enrollment_w_grade.percnt_to_ltr
   end
 
-  test 'enrollment percentages convert to points for gpa' do
-    assert_equal "4.0", @enrollment_w_percentage.ltr_to_grd_pts
+  test 'enrollment grades convert to points for gpa' do
+    assert_equal "4.0", @enrollment_w_grade.ltr_to_grd_pts
   end
 
 # Tests related to validations on the enrollment record
@@ -49,9 +49,9 @@ class EnrollmentTest < ActiveSupport::TestCase
     assert enrollment.save
   end
 
-  test 'should not save enrollment record when percentage is too high' do
+  test 'should not save enrollment record when grade is too high' do
     enrollment = Enrollment.new
-    enrollment.course, enrollment.student, enrollment.percentage = @physics, @stud_w_3_courses, 200
+    enrollment.course, enrollment.student, enrollment.grade = @physics, @stud_w_3_courses, 200
     assert_not enrollment.save
   end
 

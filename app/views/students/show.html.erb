@@ -21,7 +21,7 @@
     <% @student.enrollments.map do |g| %>
     <tr>
       <td scope="row"><%= g.get_course_title %></td>
-      <td class="text-center"><%= g.percentage&.round(1) %></td>
+      <td class="text-center"><%= g.grade&.round(1) %></td>
       <td class="text-center"><%= g.percnt_to_ltr %></td>
       <td class="text-center"><%= g.ltr_to_grd_pts %></td>
     </tr>

@@ -27,7 +27,7 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test 'average enrollment in a course can be accessed from a course instance directly' do
-    c_average = Enrollment.where(course_id: @course_wizardry.id).average(:percentage).to_f
+    c_average = Enrollment.where(course_id: @course_wizardry.id).average(:grade).to_f
     assert_equal c_average, @course_wizardry.course_average
   end
 end

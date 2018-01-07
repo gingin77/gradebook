@@ -1,104 +1,104 @@
 <% norm = Rubystats::NormalDistribution.new(80.0, 14.4) %>
-<% percentages = 400.times.map { norm.rng.round(3) } %>
+<% grades = 400.times.map { norm.rng.round(3) } %>
 
 <% 14.times do |n| %>
 enrollment_fix_<%= n %>:
-  percentage: <%= percentages[n] %>
+  grade: <%= grades[n] %>
   student: student_fix_<%= n %>
   course: organic_chemisty
 <% end %>
 
 # Four enrollments for student one
 one:
-  percentage: 93.3
+  grade: 93.3
   student: one
   course: organic_chemisty
 
 two:
-  percentage: 43.4
+  grade: 43.4
   student: one
   course: computer_science
 
 three:
-  percentage: 88.4
+  grade: 88.4
   student: one
   course: calculus
 
 four:
-  percentage: 97.3
+  grade: 97.3
   student: one
   course: wizardry
 
 # Seven enrollments for student two
 thirteen:
-  percentage:
+  grade:
   student: two
   course: organic_chemisty
 
 fourteen:
-  percentage: 200
+  grade: 200
   student: two
   course: computer_science
 
 five:
-  percentage: 85.2
+  grade: 85.2
   student: two
   course: english
 
 six:
-  percentage: 77.8
+  grade: 77.8
   student: two
   course: calculus
 
 seven:
-  percentage: 95.3
+  grade: 95.3
   student: two
   course: art_history_two
 
 eight:
-  percentage: 76.3
+  grade: 76.3
   student: two
   course: wizardry
 
 nine:
-  percentage: 86.8
+  grade: 86.8
   student: two
   course: physics
 
 # Three enrollments for student three
 ten:
-  percentage: 77.8
+  grade: 77.8
   student: three
   course: wizardry
 
 eleven:
-  percentage: 95.3
+  grade: 95.3
   student: three
   course: quidditch
 
 twelve:
-  percentage: 61.0
+  grade: 61.0
   student: three
   course: art_history_two
 
 
 # Four enrollments for student 4
 fifteen:
-  percentage: 72.0
+  grade: 72.0
   student: four
   course: wizardry
 
 sixteen:
-  percentage: 92
+  grade: 92
   student: four
   course: english
 
 seventeen:
-  percentage: 61.0
+  grade: 61.0
   student: four
   course: art_history_two
 
 eighteen:
-  percentage: 85.3
+  grade: 85.3
   student: four
   course: computer_science

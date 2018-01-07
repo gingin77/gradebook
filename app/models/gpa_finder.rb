@@ -4,7 +4,7 @@ class GPAFinder
   include GradeConsts
 
   def initialize(student_id)
-    @percentages = Enrollment.where(student_id: student_id).map { |g| g.percentage }
+    @grades = Enrollment.where(student_id: student_id).map { |g| g.grade }
   end
 
   def gp_average
@@ -14,7 +14,7 @@ class GPAFinder
   private
 
   def letters
-    @percentages.map do |p|
+    @grades.map do |p|
       GradeConsts::PRCT_TO_LTR.select {|k, v| break v if k.cover? p}
     end
   end
