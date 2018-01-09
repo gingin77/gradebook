@@ -1,8 +1,8 @@
 # Gradebook
 
-This application was built to meet specs for an [exercise for the Rails Developer Apprenticeship position at Viget Labs](https://github.com/vigetlabs/gradebook).
+This application was built to meet specs for an [exercise developed by Viget Labs](https://github.com/vigetlabs/gradebook).
 
-## Assignment:
+## Specs:
 > Build an application that allows for the recording and reporting of courses offered by teachers and taken by students. It should satisfy these stories:
 >
 > * A Teacher can manage his course roster
@@ -43,5 +43,5 @@ This application was built to meet specs for an [exercise for the Rails Develope
   * Some standard ActiveRecord validations were used to maintain integrity of the Enrollments table. In addition, 2 custom validations were designed to block the creation of more than 4 Enrollment records for a given student and no more than 16 Enrollment records can be created for a given course.
 
 * **Tests**
-  * The Sessions and Enrollments controllers have the most integration tests. Other controllers have a few tests but since the most complex functionality was associated with adding and updating grade records by authenticated teacher-users, it made sense to write more tests for the Enrollments controller.
+  * The Sessions and Enrollments controllers have the most integration tests. Other controllers have a few tests but since the most complex functionality was associated with adding and updating enrollment records by authenticated teacher-users, it made sense to write more tests for the Enrollments controller.
   * This was my first time building a test-suite for an app and some of the tests I wrote in the beginning for the models might be a bit redundant with the controller integration tests I wrote later in the development process.
