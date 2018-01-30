@@ -44,7 +44,7 @@ class EnrollmentsController < ApplicationController
   def destroy
     @enrollment.destroy
     redirect_to course_path(@course.id)
-    flash[:success] = @enrollment.get_student_name + " was dropped from the course."
+    flash[:success] = @enrollment.student_name + " was dropped from the course."
   end
 
   private

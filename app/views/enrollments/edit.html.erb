@@ -3,7 +3,7 @@
 </p>
 <br />
 <p>
-  You are updating <%= @enrollment.get_student_name %>'s grade for <%= @course.course_title %>
+  You are updating <%= @enrollment.student_name %>'s grade for <%= @course.course_title %>
 </p>
 <% if @enrollment.grade.nil? %>
   <p>
@@ -16,6 +16,6 @@
     <%= text_field_tag :grade, @enrollment.grade %>
   </p>
   <br />
-  <%= hidden_field :students_name, :value => @enrollment.get_student_name %>
+  <%= hidden_field :students_name, :value => @enrollment.student_name %>
   <%= submit_tag("Submit") %>
 <% end %>

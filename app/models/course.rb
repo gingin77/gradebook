@@ -3,8 +3,10 @@ class Course < ApplicationRecord
   has_many :students, through: :enrollments
   belongs_to :teacher
 
+  # delegate :name, to: :teacher, prefix: :teacher
+
   def teachers_name
-    Teacher.find_by_id(self.teacher_id)&.name
+    teacher&.name
   end
 
   def course_average

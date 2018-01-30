@@ -19,7 +19,7 @@
   <tbody>
     <% @course.enrollments.select {|gp| !gp.grade.nil? }.sort_by{|p| -p.grade }.map do |g| %>
     <tr>
-      <td scope="row"><%= g.get_student_name %></td>
+      <td scope="row"><%= g.student_name %></td>
       <td class="text-center"><%= g.grade&.round(1) %></td>
       <td class="text-center"><%= g.percnt_to_ltr %></td>
       <td class="text-center"><%= link_to "Update Grade", edit_course_enrollment_path(@course.id, g.id) %></td>
@@ -28,7 +28,7 @@
     <% end %>
     <% @course.enrollments.select {|gp| gp.grade.nil? }.map do |g| %>
     <tr>
-      <td scope="row"><%= g.get_student_name %></td>
+      <td scope="row"><%= g.student_name %></td>
       <td class="text-center"></td>
       <td class="text-center"></td>
       <td class="text-center"><%= link_to "Add Grade", edit_course_enrollment_path(@course.id, g.id) %></td>

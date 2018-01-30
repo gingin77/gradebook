@@ -6,19 +6,14 @@ class Enrollment < ApplicationRecord
   belongs_to :course
   belongs_to :student
 
+  delegate :course_title, to: :course, prefix: :course
+  delegate :name, to: :student, prefix: :student
+
   validates_numericality_of :grade, less_than: 101, :allow_blank => true
   validates_uniqueness_of :course_id, scope: :student_id
 
   validate :limit_a_student_to_4_courses, on: :create
   validate :cap_course_enrollment_at_16, on: :create
-
-  def get_course_title
-    Course.find_by_id(self.course_id).course_title
-  end
-
-  def get_student_name
-    Student.find_by_id(self.student_id).name
-  end
 
   def percnt_to_ltr
     GradeConsts::PRCT_TO_LTR.select {|k, v| break v if k.cover? self.grade }
