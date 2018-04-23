@@ -9,8 +9,8 @@
 
   <body>
     <nav>
-      <% if @current_user %>
-          <p>Welcome, <%= @current_user.get_proper_name %> | <%= link_to "Logout", logout_path, :method => :delete %></p>
+      <% if current_user %>
+          <p>Welcome, <%= current_user.get_proper_name %> | <%= link_to "Logout", logout_path, :method => :delete %></p>
         <% else %>
         <% end %>
     </nav>

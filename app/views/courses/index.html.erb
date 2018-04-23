@@ -1,15 +1,17 @@
-<% if @current_user.student? %>
-<p><%= link_to "Go back to your current courses and grades", student_path(@current_user.identifiable_id) %>
-</p>
+<% if current_user.student? %>
+  <p>
+    <%= link_to "Go back to your current courses and grades", student_path(current_user.identifiable_id) %>
+  </p>
 <% end %>
-<% if @current_user.teacher? %>
-<p><%= link_to "Go back to your course rosters", teacher_path(@current_user.identifiable_id) %>
-</p>
+<% if current_user.teacher? %>
+  <p>
+    <%= link_to "Go back to your course rosters", teacher_path(current_user.identifiable_id) %>
+  </p>
 <% end %>
-<% if @current_user.admin? %>
-<p>
-  <%= link_to "View complete list of all Students' grades", students_path %>
-</p>
+<% if current_user.admin? %>
+  <p>
+    <%= link_to "View complete list of all Students' grades", students_path %>
+  </p>
 <% end %>
 <h1>Courses @The Upside Down Academy</h1>
 <table class="table table-sm">
@@ -18,7 +20,7 @@
       <th scope="col">Course</th>
       <th scope="col">Teacher</th>
       <th scope="col" class="text-center">Enrollment Count</th>
-      <% if @current_user.admin? %>
+      <% if current_user.admin? %>
         <th scope="col" class="text-center">Average Grade</th>
       <% end %>
     </tr>
@@ -29,7 +31,7 @@
       <td scope="row"><%= c&.course_title %></td>
       <td><%= c&.teachers_name %></td>
       <td class="text-center"><%= c&.students.count %></td>
-      <% if @current_user.admin? %>
+      <% if current_user.admin? %>
         <td scope="col" class="text-center"><%= c&.course_average&.round(2) %></td>
       <% end %>
     </tr>

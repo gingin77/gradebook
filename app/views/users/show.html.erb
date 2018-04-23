@@ -3,15 +3,15 @@
 </p>
 <p>
   <ul>
-    <% if @current_user.student? %>
-    <li><%= link_to "Access your current courses and grades", student_path(@current_user.identifiable_id) %>
+    <% if current_user.student? %>
+    <li><%= link_to "Access your current courses and grades", student_path(current_user.identifiable_id) %>
     </li>
     <% end %>
     <% if can? :show, Teacher %>
-    <li><%= link_to "Course rosters with your students' grades", teacher_path(@current_user.identifiable_id) %>
+    <li><%= link_to "Course rosters with your students' grades", teacher_path(current_user.identifiable_id) %>
     </li>
     <% end %>
-    <% if @current_user.admin? %>
+    <% if current_user.admin? %>
     <li><%= link_to "All Students' GPA's", students_path %></li>
     <% end %>
     <li>
