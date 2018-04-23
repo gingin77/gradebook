@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   protect_from_forgery with: :exception
-  rescue_from "CanCan::AccessDenied" do |exception|
-    flash[:danger] = "Access denied."
-    redirect_to home_path
-  end
 
   private
 
