@@ -1,16 +1,15 @@
 class EnrollmentsController < ApplicationController
-  load_and_authorize_resource :course
-  load_and_authorize_resource :enrollment, through: :course
-
   before_action :get_course
   before_action :get_student, only: :create
   before_action :get_enrollment, only: [:edit, :update, :destroy]
 
   def new
     @enrollment = Enrollment.new
+    authorize @enrollment
   end
 
   def create
+    authorize @enrollment
     if !@student.nil?
       @enrollment.course_id = @course.id
       @enrollment.student_id = @student.id
@@ -28,10 +27,12 @@ class EnrollmentsController < ApplicationController
   end
 
   def edit
+    authorize @enrollment
   end
 
   def update
     @enrollment.update_attributes(grade: params[:grade])
+    authorize @enrollment
     if @enrollment.save
       redirect_to course_path(@course.id)
       flash[:success] = "The grade has been updated."
@@ -42,6 +43,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def destroy
+    authorize @enrollment
     @enrollment.destroy
     redirect_to course_path(@course.id)
     flash[:success] = @enrollment.student_name + " was dropped from the course."

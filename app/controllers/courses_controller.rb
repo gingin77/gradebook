@@ -8,6 +8,5 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @course_avg = @course.enrollments.average(:grade).round(2)
-    authorize! :manage, @course
   end
 end

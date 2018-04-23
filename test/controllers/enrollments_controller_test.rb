@@ -14,7 +14,7 @@ class EnrollmentsControllerTest < ActionDispatch::IntegrationTest
   test 'a teacher who owns course can access path to add students to that class' do
     log_in_as(@physics_teach_user)
     assert is_logged_in?
-    get new_course_enrollment_path (@phs_id)
+    get new_course_enrollment_path(@phs_id)
     assert_response :success
   end
 
